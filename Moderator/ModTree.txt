@@ -1,0 +1,19 @@
+WebTech_Project_Fall2026-27_GroupNumber-7-/
+├── index.html                           [Role gateway linking to all 4 portals]
+├── Design/
+│   └── Style.css                        [Shared stylesheet with Moderator Teal/Emerald theme]
+├── JS/
+│   ├── Common.js                        [All 26+ core validators & DOM helpers from readme.md]
+│   └── Index.js                         [Homepage script]
+└── Moderator/
+    ├── ModeratorLogin.html              [Page 1: ID, Password, Math CAPTCHA, Remember Me]
+    ├── ModeratorRegistration.html       [Page 2: Official Email, MOD-1234, Department, Passwords]
+    ├── ReviewReports.html               [Page 3: User/Gig Reports, Conditional Restrictive Reason]
+    ├── ManageDisputes.html              [Page 4: Order Resolution Center, 50+ char Notes]
+    ├── ReviewPayments.html              [Page 5: Payment & Refund Supervision, Refund <= Original]
+    └── JS/
+        ├── ModeratorLogin.js
+        ├── ModeratorRegistration.js
+        ├── ReviewReports.js
+        ├── ManageDisputes.js
+        └── ReviewPayments.js
