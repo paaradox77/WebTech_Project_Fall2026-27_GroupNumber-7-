@@ -252,12 +252,12 @@
                                         <option value="ORD-2003"> ORD-2003 </option>
                                         <option value="ORD-2004"> ORD-2004 </option>
                                     </select>
-                                    <p id="OrderdError"> </p>
+                                    <p id="OrderIdError"> </p>
                                 </td>
                             </tr>
                             <tr>
                                 <td> <label for="ClientName"> Client Name: </label> </td>
-                                <td> <input type="text" id="ClientName" for="ClientName" placeholder="Name of the clint">
+                                <td> <input type="text" id="ClientName" for="ClientName" placeholder="Name of the client">
                                 <p id="ClientError"> </p> </td>
                             </tr>
                             <tr>
@@ -283,7 +283,7 @@
                             </tr>
                             <tr>
                                 <td> <label for="DisputeDescription"> Description: </label> </td>
-                                <td> <textarea id="DisputeDescription" placeholder="What is the dispute abot?"></textarea> </td>
+                                <td> <textarea id="DisputeDescription" placeholder="What is the dispute about?"></textarea> </td>
                             </tr>
                             <tr>
                                 <td> <label for="DisputeEvidence"> Evidence URL: </label> </td>
@@ -306,7 +306,7 @@
                             </tr>
                             <tr>
                                 <td> <label for="DisputeNotes"> Resolution Notes: </label> </td>
-                                <td> <textarea id="DisputeNotes" placeholder="Your findings (at least 0 characters)"></textarea>
+                                <td> <textarea id="DisputeNotes" placeholder="Your findings (at least 10 characters)"></textarea>
                                 <p id="DisputeNotesError"> </p> </td>
                             </tr>
                         </table>
@@ -359,13 +359,90 @@
                                 <td>Farhana Yasmin</td>
                                 <td>Imran Hasan</td>
                                 <td>Communication Problem</td>
-                                <td><a href="https://example.com/chat/2004" target="_blan">Open</a></td>
+                                <td><a href="https://example.com/chat/2004" target="_blank">Open</a></td>
                                 <td id="DisputeStatus3">Pending</td>
                             </tr>
                         </table>
                     </div>
                 </div>
 
+                <!-- Page 5 : Review Payments -->
+                <div id="PaymentsSection">
+                    <form onsubmit="return collect_payment()">
+                        <table>
+                            <tr>
+                                <td> <label for="TransactionId"> Transaction ID: </label> </td>
+                                <td>
+                                    <select id="TransactionId" onchange="showTransaction()">
+                                        <option value=""> -------------  </option>
+                                        <option value="TX-1001"> TX-1001 </option>
+                                        <option value="TX-1002"> TX-1002 </option>
+                                        <option value="TX-1003"> TX-1003 </option>
+                                        <option value="TX-1004"> TX-1004 </option>
+                                    </select>
+                                    <p id="TransactionError"> </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="PayOrderId"> Order ID: </label> </td>
+                                <td> <input type="text" id="PayOrderId" for="PayOrderId" placeholder="Example: ORD-2001"> </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="PayClient"> Client: </label> </td>
+                                <td> <input type="text" id="PayClient" for="PayClient" placeholder="Name of the client"> </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="PayFreelancer"> Freelancer: </label> </td>
+                                <td> <input type="text" id="PayFreelancer" for="PayFreelancer" placeholder="Name of the freelancer"> </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="OriginalAmount"> Original Amount: </label> </td>
+                                <td> <input type="number" id="OriginalAmount" for="OriginalAmount" placeholder="Amount paid">
+                                <p id="OriginalError"> </p> </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="PaymentStatus"> Payment Status: </label> </td>
+                                <td>
+                                    <select id="PaymentStatus">
+                                        <option value=""> -------------  </option>
+                                        <option value="Completed"> Completed </option>
+                                        <option value="Pending"> Pending </option>
+                                        <option value="Failed"> Failed </option>
+                                        <option value="Refunded"> Refunded </option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="RefundAmount"> Requested Refund: </label> </td>
+                                <td> <input type="number" id="RefundAmount" for="RefundAmount" placeholder="Amount the client asks back">
+                                <p id="RefundError"> </p> </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="PaymentDecision"> Decision: </label> </td>
+                                <td>
+                                    <select id="PaymentDecision">
+                                        <option value=""> -------------  </option>
+                                        <option value="Payment Verified"> Payment Verified </option>
+                                        <option value="Payment Issue Detected"> Payment Issue Detected </option>
+                                        <option value="Refund Recommended"> Refund Recommended </option>
+                                        <option value="Refund Rejected"> Refund Rejected </option>
+                                        <option value="Escalate to Admin"> Escalate to Admin </option>
+                                    </select>
+                                    <p id="PaymentDecisionError"> </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="PaymentNotes"> Investigation Notes: </label> </td>
+                                <td> <textarea id="PaymentNotes" placeholder="What did you check? (give a reason to reject a refund)"></textarea>
+                                <p id="PaymentNotesError"> </p> </td>
+                            </tr>
+                        </table>
+
+                        <div class="buttons">
+                            <input type="submit" id="PaymentSave" for="PaymentSave" value="SAVE">
+                            <input type="reset" id="PaymentClear" for="PaymentClear" value="CLEAR" onclick="clearPayment()">
+                        </div>
+                    </form>
 
 
 
