@@ -357,7 +357,7 @@ Unlike the Admin, the Moderator does not control the entire platform or manage a
 
 | Page | Main Functionality | Special JavaScript Validation |
 |---|---|---|
-| ModeratorLogin.html | Moderator login | Moderator ID format (MOD-1234); password; CAPTCHA |
+| ModeratorLogin.html | Moderator login | Moderator ID format (MOD-1234); password |
 | ModeratorRegistration.html | Moderator account registration interface | Name, official email, moderator ID, department, password and confirmation |
 | ReviewReports.html | Review user-submitted reports | Report ID validation; report category; evidence selection; decision and explanation required |
 | ManageDisputes.html | Resolve conflicts between clients and freelancers | Order ID; dispute category; evidence requirement; decision selection; resolution explanation 50+ characters |
@@ -368,8 +368,6 @@ Unlike the Admin, the Moderator does not control the entire platform or manage a
 **1. Moderator Login**
 - Moderator ID.
 - Password.
-- CAPTCHA.
-- Remember me.
 
 Special rule: Moderator ID must follow `MOD-1234` format.
 
@@ -445,7 +443,7 @@ Possible decisions:
 Special rules:
 - Order ID must exist in mock order data.
 - Dispute category is required.
-- Resolution notes must contain at least 50 characters.
+- Resolution notes must contain at least 10 characters.
 - Additional evidence is required when requesting further investigation.
 - Both client and freelancer must be identified.
 
