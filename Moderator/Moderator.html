@@ -17,8 +17,37 @@
                 <img src=""   id="LoginImage" alt="">
             </div>
 
-            
-         </div>
+             <div class="panel">
+                <h1> OneLink </h1>
+                <p id="LoginMesage"> </p>
+
+                <form onsubmit="return collect_login()">
+                    <table>
+                        <tr>
+                            <td> <label for="LoginId"> Moderator ID: </label> </td>
+                        </tr>
+                        <tr>
+                            <td> <input type="text" id="LoginId" for="LoginId" placeholder="Example: MOD-1234">
+                            <p id="LoginIdEror"> </p> </td>
+                        </tr>
+                        <tr>
+                            <td> <label for="LoginPassword"> Password: </label> </td>
+                        </tr>
+                        <tr>
+                            <td> <input type="password" id="LoginPassword" for="LoginPassword">
+                            <p id="LoginPasswordError"> </p> </td>
+                        </tr>
+                    </table>
+
+                    <div id="LoginButtons">
+                        <input type="submit" id="LoginSubmit" for="LoginSubmit" value="Log In">
+                        <button type="button" id="LoginToRegister" onclick="showPage('Regiter')">Register</button>
+                    </div>
+                </form>
+
+
+
+             </div>
 
 
     </body>
