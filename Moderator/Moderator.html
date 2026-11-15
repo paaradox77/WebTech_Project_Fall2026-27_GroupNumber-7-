@@ -90,13 +90,153 @@
                     <div id="RegisterButtons">
                         <input type="submit" id="RegisterSubmit" for="RegisterSubmit" value="Register">
                         <button type="button" id="RegisterToLogin" onclick="showPage('Login')">Back to Login</button>
-                    </div>
-
-                    
+                    </div>   
                 </form>
             </div>
-
         </div>
+
+
+         <div class="layout" id="ReviewPages">
+
+            <div class="sidebar">
+                <h2> Moderator Portal: </h2>
+
+                <button type="button" id="BtnReports" onclick="showPage('Reports')">Review Reports</button>
+                <button type="button" id="BtnDisputes" onclick="showPage('Disputes')">Manage Disputes</button>
+                <button type="button" id="BtnPayments" onclick="showPage('Payments')">Review Paments</button>
+                <button type="button" id="BtnLogout" onclick="logOut()">Log Out</button>
+            </div>
+
+            <div class="content">
+
+                <div class="notice">
+                    Moderators review cases and recommend actions only. hey do not transfer money or make real refunds.
+                </div>
+
+            <!--Review Reports --> 
+
+             <div id="ReportsSection">
+                    <form onsubmit="return collect_report()">
+                        <table>
+                            <tr>
+                                <td> <label for="ReportId"> Report ID: </label> </td>
+                                <td>
+                                    <select id="ReportId" onchange="showReport()">
+                                        <option value=""> -------------  </option>
+                                        <option value="RP-101"> RP-101 </option>
+                                        <option value="RP-102"> RP-102 </option>
+                                        <option value="RP-103"> RP-103 </option>
+                                        <option value="RP-104"> RP-104 </option>
+                                    </select>
+                                    <p id="ReportIdError"> </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="Reporter"> Reporter: </label> </td>
+                                <td> <input type="text" id="Reporter" for="Reporter" placeholder="Who sent the report"> </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="ReportedUser"> Reporte User: </label> </td>
+                                <td> <input type="text" id="ReportedUser" for="ReportedUser" placeholder="Who was reported"> </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="ReportCategory"> Report Category: </label> </td>
+                                <td>
+                                    <select id="ReportCategory">
+                                        <option value=""> -------------  </option>
+                                        <option value="Fake profile"> Fake profile </option>
+                                        <option value="Harassment"> Harasment </option>
+                                        <option value="Scam"> Scam </option>
+                                        <option value="Inappropriate content"> Inappropriate content </option>
+                                        <option value="Other"> Other </option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="ReportDescription"> Description: </label> </td>
+                                <td> <textarea id="ReportDescription" placeholder="What happened?"></textarea> </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="EvidenceUrl"> Evidence URL: </label> </td>
+                                <td> <input type="text" id="EvidenceUrl" for="EvidenceUrl" placeholder="https://... (if there is any)">
+                                <p id="EvidenceError"> </p> </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="ReportDecision"> Decision: </label> </td>
+                                <td>
+                                    <select id="ReportDecision">
+                                        <option value=""> -------------  </option>
+                                        <option value="No Violation"> No Violation </option>
+                                        <option value="Warning Issued"> Warning Issued </option>
+                                        <option value="Content Restricted"> Content Resticted </option>
+                                        <option value="Content Removed"> Content Removed </option>
+                                        <option value="Account Suspended"> Account Suspended </option>
+                                        <option value="Escalate to Admin"> Escalate to Admin </option>
+                                    </select>
+                                    <p id="ReportDecisionError"> </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="ReportNotes"> Moderator Notes: </label> </td>
+                                <td> <textarea id="ReportNotes" placeholder="Your notes (give a reason for restrictive decisions)"></textarea>
+                                <p id="ReportNotesError"> </p> </td>
+                            </tr>
+                        </table>
+
+                        <div class="buttons">
+                            <input type="submit" id="ReportSave" for="ReportSave" value="SAVE">
+                            <input type="reset" id="ReportClear" for="ReportClear" value="CLEAR" onclick="clearReport()">
+                        </div>
+                    </form>
+
+                    <p id="ReportMessage"> </p>
+
+                    <div class="list">
+                        <h3> Submitted Reports </h3>
+                        <table>
+                            <tr>
+                                <th>Report ID</th>
+                                <th>Reporter</th>
+                                <th>Reported User</th>
+                                <th>Categori</th>
+                                <th>Evidence</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>RP-101</td>
+                                <td>Nadia Islam</td>
+                                <td>Tanvir Ahmed</td>
+                                <td>Fake profile</td>
+                                <td><a href="https://example.com/evidence/101" target="_blank">Open</a></td>
+                                <td id="ReportStatus0">Pending</td>
+                            </tr>
+                            <tr>
+                                <td>RP-102</td>
+                                <td>Karim Hosain</td>
+                                <td>Imran Hasan</td>
+                                <td>Harassment</td>
+                                <td><a href="https://example.com/evidence/102" target="_blank">Open</a></td>
+                                <td id="ReportStatus1">Pending</td>
+                            </tr>
+                            <tr>
+                                <td>RP-103</td>
+                                <td>Sadia Rahman</td>
+                                <td>Mitu Akter</td>
+                                <td>Scam</td>
+                                <td>None</td>
+                                <td id="ReportStatus2">Pending</td>
+                            </tr>
+                            <tr>
+                                <td>RP-104</td>
+                                <td>Rahim Uddin</td>
+                                <td>Farhana Yasmin</td>
+                                <td>Inapropriate content</td>
+                                <td><a href="https://example.com/evidence/104" target="_blank">Open</a></td>
+                                <td id="ReportStatus3">Pending</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
 
 
 
