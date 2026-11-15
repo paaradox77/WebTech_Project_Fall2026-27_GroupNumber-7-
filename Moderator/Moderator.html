@@ -44,10 +44,58 @@
                         <button type="button" id="LoginToRegister" onclick="showPage('Register')">Register</button>
                     </div>
                 </form>
+            </div>
+        </div>
+          
+        <!--Registration-->
 
+         <div class="layout" id="RegisterPage">
 
+            <div class="picture"> 
+                <img src="" id="RegisterImage" alt="">
+            </div>
 
-             </div>
+            <div class="panel">
+                <h1> OneLink </h1>
+
+                <form onsubmit="return colect_registration()">
+                    <table>
+                        <tr>
+                            <td> <label for="RegName"> Full Name: </label> </td>
+                            <td> <input type="text" id="RegName" for="RegName" placeholder="Eter Your Name">
+                            <p id="RegNameError"> </p> </td>
+                        </tr>
+                        <tr>
+                            <td> <label for="RegEmail"> Official Email: </label> </td>
+                            <td> <input type="email" id="RegEmail" for="RegEmail" placeholder="name@onelink.com">
+                            <p id="RegEmailError"> </p> </td>
+                        </tr>
+                        <tr>
+                            <td> <label for="RegId"> Moderator ID: </label> </td>
+                            <td> <input type="text" id="RegId" for="RegId" placeholder="Example: MOD-1234">
+                            <p id="RegIdError"> </p> </td>
+                        </tr>
+                        <tr>
+                            <td> <label for="RegPassword"> Password: </label> </td>
+                            <td> <input type="password" id="RegPassword" for="RegPassword" placeholder="6 or ore characters">
+                            <p id="RegPasswordError"> </p> </td>
+                        </tr>
+                        <tr>
+                            <td> <label for="RegConfirm"> Confirm Password: </label> </td>
+                            <td> <input type="password" id="RegConfirm" for="RegConfirm" placeholder="Enter the Pasword again">
+                            <p id="RegConfirmError"> </p> </td>
+                        </tr>
+                    </table>
+
+                    <div id="RegisterButtons">
+                        <input type="submit" id="RegisterSubmit" for="RegisterSubmit" value="Register">
+                        <button type="button" id="RegisterToLogin" onclick="showPage('Login')">Back to Login</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
 
 
     </body>
