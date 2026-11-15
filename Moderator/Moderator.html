@@ -238,6 +238,135 @@
                     </div>
                 </div>
 
+            <!-- Manage Disputes-->
+             <div id="DisputesSection">
+                    <form onsubmit="return collect_dispute()">
+                        <table>
+                            <tr>
+                                <td> <label for="OrderId"> Order ID: </label> </td>
+                                <td>
+                                    <select id="OrderId" onchange="showOrder()">
+                                        <option value=""> -------------  </option>
+                                        <option value="ORD-2001"> ORD-2001 </option>
+                                        <option value="ORD-2002"> ORD-2002 </option>
+                                        <option value="ORD-2003"> ORD-2003 </option>
+                                        <option value="ORD-2004"> ORD-2004 </option>
+                                    </select>
+                                    <p id="OrderdError"> </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="ClientName"> Client Name: </label> </td>
+                                <td> <input type="text" id="ClientName" for="ClientName" placeholder="Name of the clint">
+                                <p id="ClientError"> </p> </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="FreelancerName"> Freelancer Name: </label> </td>
+                                <td> <input type="text" id="FreelancerName" for="FreelancerName" placeholder="Name of the freelancer">
+                                <p id="FreelancerError"> </p> </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="DisputeCategory"> Dispute Category: </label> </td>
+                                <td>
+                                    <select id="DisputeCategory">
+                                        <option value=""> -------------  </option>
+                                        <option value="Work Quality"> Work Quality </option>
+                                        <option value="Late Delivery"> Late Delivery </option>
+                                        <option value="Incomplete Work"> Incomplete Work </option>
+                                        <option value="Payment Issue"> Payment Issue </option>
+                                        <option value="Communication Problem"> Communication Problem </option>
+                                        <option value="Order Cancellation"> Order Cancellation </option>
+                                        <option value="Other"> Other </option>
+                                    </select>
+                                    <p id="DisputeCategoryError"> </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="DisputeDescription"> Description: </label> </td>
+                                <td> <textarea id="DisputeDescription" placeholder="What is the dispute abot?"></textarea> </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="DisputeEvidence"> Evidence URL: </label> </td>
+                                <td> <input type="text" id="DisputeEvidence" for="DisputeEvidence" placeholder="https://... (if there is any)">
+                                <p id="DisputeEvidenceError"> </p> </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="DisputeDecision"> Decision: </label> </td>
+                                <td>
+                                    <select id="DisputeDecision">
+                                        <option value=""> -------------  </option>
+                                        <option value="Resolve in Client's Favor"> Resolve in Client's Favor </option>
+                                        <option value="Resolve in Freelancer's Favor"> Resolve in Freelancer's Favor </option>
+                                        <option value="Request More Evidence"> Request More Evidence </option>
+                                        <option value="Mutual Cancellation"> Mutual Cancellation </option>
+                                        <option value="Escalate to Admin"> Escalate to Admin </option>
+                                    </select>
+                                    <p id="DisputeDecisionError"> </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> <label for="DisputeNotes"> Resolution Notes: </label> </td>
+                                <td> <textarea id="DisputeNotes" placeholder="Your findings (at least 0 characters)"></textarea>
+                                <p id="DisputeNotesError"> </p> </td>
+                            </tr>
+                        </table>
+
+                        <div class="buttons">
+                            <input type="submit" id="DisputeSave" for="DisputeSave" value="SAVE">
+                            <input type="reset" id="DisputeClear" for="DisputeClear" value="CLEAR" onclick="clearDispute()">
+                        </div>
+                    </form>
+
+                    <p id="DisputeMessage"> </p>
+
+                    <div class="list">
+                        <h3> Order Data </h3>
+                        <table>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Client</th>
+                                <th>Freelancer</th>
+                                <th>Category</th>
+                                <th>Evidence</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>ORD-2001</td>
+                                <td>Nadia Islam</td>
+                                <td>Rahim Uddin</td>
+                                <td>Late Delivery</td>
+                                <td><a href="https://example.com/chat/2001" target="_blank">Open</a></td>
+                                <td id="DisputeStatus0">Pending</td>
+                            </tr>
+                            <tr>
+                                <td>ORD-2002</td>
+                                <td>Karim Hossain</td>
+                                <td>Sadia Rahman</td>
+                                <td>Work Quality</td>
+                                <td><a href="https://example.com/files/2002" target="_blank">Open</a></td>
+                                <td id="DisputeStatus1">Pending</td>
+                            </tr>
+                            <tr>
+                                <td>ORD-2003</td>
+                                <td>Mitu Akter</td>
+                                <td>Tanvir Ahmed</td>
+                                <td>Incomplete Work</td>
+                                <td>None</td>
+                                <td id="DisputeStatus2">Pending</td>
+                            </tr>
+                            <tr>
+                                <td>ORD-2004</td>
+                                <td>Farhana Yasmin</td>
+                                <td>Imran Hasan</td>
+                                <td>Communication Problem</td>
+                                <td><a href="https://example.com/chat/2004" target="_blan">Open</a></td>
+                                <td id="DisputeStatus3">Pending</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+
 
 
     </body>
