@@ -366,14 +366,14 @@
                     </div>
                 </div>
 
-                <!-- Page 5 : Review Payments -->
+                <!-- Review Payments-->
                 <div id="PaymentsSection">
                     <form onsubmit="return collect_payment()">
                         <table>
                             <tr>
                                 <td> <label for="TransactionId"> Transaction ID: </label> </td>
                                 <td>
-                                    <select id="TransactionId" onchange="showTransaction()">
+                                    <select id="TransactionId" onchange="showTrasaction()">
                                         <option value=""> -------------  </option>
                                         <option value="TX-1001"> TX-1001 </option>
                                         <option value="TX-1002"> TX-1002 </option>
@@ -393,7 +393,7 @@
                             </tr>
                             <tr>
                                 <td> <label for="PayFreelancer"> Freelancer: </label> </td>
-                                <td> <input type="text" id="PayFreelancer" for="PayFreelancer" placeholder="Name of the freelancer"> </td>
+                                <td> <input type="text" id="PayFreelancer" for="PayFreelancer" placeholder="ame of the freelancer"> </td>
                             </tr>
                             <tr>
                                 <td> <label for="OriginalAmount"> Original Amount: </label> </td>
@@ -405,7 +405,7 @@
                                 <td>
                                     <select id="PaymentStatus">
                                         <option value=""> -------------  </option>
-                                        <option value="Completed"> Completed </option>
+                                        <option value="Completed"> Competed </option>
                                         <option value="Pending"> Pending </option>
                                         <option value="Failed"> Failed </option>
                                         <option value="Refunded"> Refunded </option>
@@ -422,17 +422,17 @@
                                 <td>
                                     <select id="PaymentDecision">
                                         <option value=""> -------------  </option>
-                                        <option value="Payment Verified"> Payment Verified </option>
+                                        <option value="Payment Verified"> Paymet Verified </option>
                                         <option value="Payment Issue Detected"> Payment Issue Detected </option>
-                                        <option value="Refund Recommended"> Refund Recommended </option>
-                                        <option value="Refund Rejected"> Refund Rejected </option>
+                                        <option value="Refund Recommended"> Refun Recommended </option>
+                                        <option value="Refund Rejected"> Refund Rejcted </option>
                                         <option value="Escalate to Admin"> Escalate to Admin </option>
                                     </select>
                                     <p id="PaymentDecisionError"> </p>
                                 </td>
                             </tr>
                             <tr>
-                                <td> <label for="PaymentNotes"> Investigation Notes: </label> </td>
+                                <td> <label for="PaymentNotes"> Investigation Note: </label> </td>
                                 <td> <textarea id="PaymentNotes" placeholder="What did you check? (give a reason to reject a refund)"></textarea>
                                 <p id="PaymentNotesError"> </p> </td>
                             </tr>
@@ -443,6 +443,63 @@
                             <input type="reset" id="PaymentClear" for="PaymentClear" value="CLEAR" onclick="clearPayment()">
                         </div>
                     </form>
+                <p id="PaymentMessage"> </p>
+
+                    <div class="list">
+                        <h3> Payment Comlaints </h3>
+                        <table>
+                            <tr>
+                                <th>Transaction ID</th>
+                                <th>Order ID</th>
+                                <th>Client</th>
+                                <th>Freelancer</th>
+                                <th>Amount</th>
+                                <th>Requested Refund</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>TX-1001</td>
+                                <td>ORD-2001</td>
+                                <td>Nadia Islam</td>
+                                <td>Rahim Uddin</td>
+                                <td>1500</td>
+                                <td>1500</td>
+                                <td id="TransactionStatus0">Pending</td>
+                            </tr>
+                            <tr>
+                                <td>TX-1002</td>
+                                <td>ORD-2002</td>
+                                <td>Karim Hossain</td>
+                                <td>Sadia Rahma</td>
+                                <td>2000</td>
+                                <td>500</td>
+                                <td id="TransactionStatus1">Pending</td>
+                            </tr>
+                            <tr>
+                                <td>TX-1003</td>
+                                <td>ORD-2003</td>
+                                <td>Mitu Akter</td>
+                                <td>Tanvir Ahmed</td>
+                                <td>800</td>
+                                <td>800</td>
+                                <td id="TransactionStatus2">Pending</td>
+                            </tr>
+                            <tr>
+                                <td>TX-1004</td>
+                                <td>ORD-2004</td>
+                                <td>Farhana Yasmin</td>
+                                <td>Imran Hasan</td>
+                                <td>1200</td>
+                                <td>1200</td>
+                                <td id="TransactionStatus3">Pending</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
 
 
 
