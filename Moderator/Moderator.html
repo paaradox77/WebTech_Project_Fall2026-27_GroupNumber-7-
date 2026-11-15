@@ -58,11 +58,11 @@
             <div class="panel">
                 <h1> OneLink </h1>
 
-                <form onsubmit="return colect_registration()">
+                <form onsubmit="return collect_registration()">
                     <table>
                         <tr>
                             <td> <label for="RegName"> Full Name: </label> </td>
-                            <td> <input type="text" id="RegName" for="RegName" placeholder="Eter Your Name">
+                            <td> <input type="text" id="RegName" for="RegName" placeholder="Enter Your Name">
                             <p id="RegNameError"> </p> </td>
                         </tr>
                         <tr>
@@ -77,12 +77,12 @@
                         </tr>
                         <tr>
                             <td> <label for="RegPassword"> Password: </label> </td>
-                            <td> <input type="password" id="RegPassword" for="RegPassword" placeholder="6 or ore characters">
+                            <td> <input type="password" id="RegPassword" for="RegPassword" placeholder="6 or more characters">
                             <p id="RegPasswordError"> </p> </td>
                         </tr>
                         <tr>
                             <td> <label for="RegConfirm"> Confirm Password: </label> </td>
-                            <td> <input type="password" id="RegConfirm" for="RegConfirm" placeholder="Enter the Pasword again">
+                            <td> <input type="password" id="RegConfirm" for="RegConfirm" placeholder="Enter the Password again">
                             <p id="RegConfirmError"> </p> </td>
                         </tr>
                     </table>
@@ -91,6 +91,8 @@
                         <input type="submit" id="RegisterSubmit" for="RegisterSubmit" value="Register">
                         <button type="button" id="RegisterToLogin" onclick="showPage('Login')">Back to Login</button>
                     </div>
+
+                    
                 </form>
             </div>
 
