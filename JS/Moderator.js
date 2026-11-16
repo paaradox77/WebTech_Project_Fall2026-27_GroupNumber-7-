@@ -411,3 +411,179 @@ function clearReport()
     document.getElementById("ReportNotesError").innerHTML = "";
     document.getElementById("ReportMessage").innerHTML = "";
 }
+
+//Disputes
+
+function showOrder()
+{
+    let OrderId = document.getElementById("OrderId").value;
+    let Position = findById(orders, OrderId);
+
+    if(Position === -1)
+    {
+        document.getElementById("ClientName").value = "";
+        document.getElementById("FreelancerName").value = "";
+        document.getElementById("DisputeCategory").value = "";
+        document.getElementById("DisputeDescription").value = "";
+        document.getElementById("DisputeEvidence").value = "";
+    }
+    else
+    {
+        document.getElementById("ClientName").value = orders[Position].client;
+        document.getElementById("FreelancerName").value = orders[Position].freelancer;
+        document.getElementById("DisputeCategory").value = orders[Position].category;
+        document.getElementById("DisputeDescription").value = orders[Position].description;
+        document.getElementById("DisputeEvidence").value = orders[Position].evidence;
+    }
+}
+
+function validateOrderId()
+{
+    let OrderId = document.getElementById("OrderId").value;
+    let IdError = document.getElementById("OrderIdError");
+    if(OrderId === "")
+    {
+        IdError.innerHTML = "Please select an Order ID";
+        return false;
+    }
+    IdError.innerHTML = "";
+    return true;
+}
+
+function validateClient()
+{
+    let Client = document.getElementById("ClientName").value.trim();
+    let ClientError = document.getElementById("ClientError");
+    if(Client === "")
+    {
+        ClientError.innerHTML = "Enter the client name";
+        return false;
+    }
+    ClientError.innerHTML = "";
+    return true;
+}
+
+function validateFreelancer()
+{
+    let Freelancer = document.getElementById("FreelancerName").value.trim();
+    let FreelancerError = document.getElementById("FreelancerError");
+    if(Freelancer === "")
+    {
+        FreelancerError.innerHTML = "Enter the freelancer name";
+        return false;
+    }
+    FreelancerError.innerHTML = "";
+    return true;
+}
+
+function validateDisputeCategory()
+{
+    let Category = document.getElementById("DisputeCategory").value;
+    let CategoryError = document.getElementById("DisputeCategoryError");
+    if(Category === "")
+    {
+        CategoryError.innerHTML = "Please select a dispute category";
+        return false;
+    }
+    CategoryError.innerHTML = "";
+    return true;
+}
+
+function validateDisputeEvidence()
+{
+    let Url = document.getElementById("DisputeEvidence").value.trim();
+    let Decision = document.getElementById("DisputeDecision").value;
+    let UrlError = document.getElementById("DisputeEvidenceError");
+    if(Url === "" && Decision === "Request More Evidence")
+    {
+        UrlError.innerHTML = "Evidence URL is required when requesting more evidence";
+        return false;
+    }
+    if(Url !== "" && !isUrl(Url))
+    {
+        UrlError.innerHTML = "The URL must start with http:// or https://";
+        return false;
+    }
+    UrlError.innerHTML = "";
+    return true;
+}
+
+function validateDisputeDecision()
+{
+    let Decision = document.getElementById("DisputeDecision").value;
+    let DecisionError = document.getElementById("DisputeDecisionError");
+    if(Decision === "")
+    {
+        DecisionError.innerHTML = "Please select a decision";
+        return false;
+    }
+    DecisionError.innerHTML = "";
+    return true;
+}
+
+function validateDisputeNotes()
+{
+    let Notes = document.getElementById("DisputeNotes").value.trim();
+    let NotesError = document.getElementById("DisputeNotesError");
+    if(Notes.length < 10)
+    {
+        NotesError.innerHTML = "Resolution notes Must Be atleast 10 Char";
+        return false;
+    }
+    NotesError.innerHTML = "";
+    return true;
+}
+
+function collect_dispute()
+{
+    let validid = validateOrderId();
+    let validclient = validateClient();
+    let validfreelancer = validateFreelancer();
+    let validcategory = validateDisputeCategory();
+    let validevidence = validateDisputeEvidence();
+    let validdecision = validateDisputeDecision();
+    let validnotes = validateDisputeNotes();
+    let Message = document.getElementById("DisputeMessage");
+
+    if(validid && validclient && validfreelancer && validcategory && validevidence && validdecision && validnotes)
+    {
+        let OrderId = document.getElementById("OrderId").value;
+        let Decision = document.getElementById("DisputeDecision").value;
+
+        let Status = "Resolved";
+        if(Decision === "Request More Evidence")
+        {
+            Status = "Evidence Requested";
+        }
+        if(Decision === "Escalate to Admin")
+        {
+            Status = "Escalated";
+        }
+        let Position = findById(orders, OrderId);
+        document.getElementById("DisputeStatus" + Position).innerHTML = Status;
+        document.getElementById("DisputeStatus" + Position).style.color = "green";
+
+        Message.innerHTML = "Decision saved for " + OrderId + " (a recommendation only)";
+        Message.style.color = "green";
+    }
+    else
+    {
+        Message.innerHTML = "";
+    }
+    return false;
+}
+
+function clearDispute()
+{
+    document.getElementById("OrderIdError").innerHTML = "";
+    document.getElementById("ClientError").innerHTML = "";
+    document.getElementById("FreelancerError").innerHTML = "";
+    document.getElementById("DisputeCategoryError").innerHTML = "";
+    document.getElementById("DisputeEvidenceError").innerHTML = "";
+    document.getElementById("DisputeDecisionError").innerHTML = "";
+    document.getElementById("DisputeNotesError").innerHTML = "";
+    document.getElementById("DisputeMessage").innerHTML = "";
+}
+
+
+
