@@ -25,7 +25,92 @@
             <a href="GenerateReport.html">Reports</a>
         </div>
 
-        
+        <form onsubmit="return validateAddStaffForm()" onreset="clearAllErrors()" novalidate>
 
+            <fieldset>
+                <legend>Staff Details</legend>
+                <table>
+                    <tr>
+                        <td><label>Staff Type:</label></td>
+                        <td>
+                            <label class="choice"><input type="radio" name="stafftype" value="Doctor"> Doctor</label>
+                            <label class="choice"><input type="radio" name="stafftype" value="Nurse"> Nurse</label>
+                            <label class="choice"><input type="radio" name="stafftype" value="Receptionist"> Receptionist</label>
+                            <label class="choice"><input type="radio" name="stafftype" value="Lab Technician"> Lab Technician</label>
+                            <p class="error" id="StaffTypeError"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="StaffName">Full Name:</label></td>
+                        <td><input type="text" id="StaffName" placeholder="Enter full name">
+                            <p class="error" id="NameError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="StaffEmail">Email:</label></td>
+                        <td><input type="email" id="StaffEmail" placeholder="Enter email">
+                            <p class="error" id="EmailError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="StaffPhone">Phone:</label></td>
+                        <td><input type="tel" id="StaffPhone" placeholder="e.g. 01712345678">
+                            <p class="error" id="PhoneError"></p></td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>Job Details</legend>
+                <table>
+                    <tr>
+                        <td><label for="Department">Department:</label></td>
+                        <td>
+                            <select id="Department">
+                                <option value="">-- Select Department --</option>
+                                <option value="Medicine">Medicine</option>
+                                <option value="Cardiology">Cardiology</option>
+                                <option value="Neurology">Neurology</option>
+                                <option value="Orthopedics">Orthopedics</option>
+                                <option value="Pathology Lab">Pathology Lab</option>
+                                <option value="Front Desk">Front Desk</option>
+                            </select>
+                            <p class="hint">Receptionists work at the Front Desk; lab technicians work in the Pathology Lab</p>
+                            <p class="error" id="DepartmentError"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="EmploymentType">Employment Type:</label></td>
+                        <td>
+                            <select id="EmploymentType">
+                                <option value="">-- Select Type --</option>
+                                <option value="Full-time">Full-time</option>
+                                <option value="Part-time">Part-time</option>
+                                <option value="Contract">Contract</option>
+                            </select>
+                            <p class="error" id="EmploymentError"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="JoiningDate">Joining Date:</label></td>
+                        <td><input type="date" id="JoiningDate">
+                            <p class="hint">Within the last 10 years, or up to 30 days from today</p>
+                            <p class="error" id="JoiningError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="Salary">Monthly Salary (BDT):</label></td>
+                        <td><input type="number" id="Salary" placeholder="10000 - 500000">
+                            <p class="error" id="SalaryError"></p></td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <p id="ResultText"></p>
+
+            <input type="submit" id="submit" value="Add Staff">
+            <input type="reset" id="reset" value="Reset">
+        </form>
+
+        <div class="footer">
+            <h5>By Jihad</h5>
+        </div>
     </body>
 </html>
