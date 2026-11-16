@@ -84,7 +84,7 @@ function validateLoginId()
     let IdError = document.getElementById("LoginIdError");
     if(LoginId === "")
     {
-        IdError.innerHTML = "Ente The Moderator ID";
+        IdError.innerHTML = "Enter The Moderator ID";
         return false;
     }
     if(!isModeratorId(LoginId))
@@ -99,7 +99,7 @@ function validateLoginId()
 function validateLoginPassword()
 {
     let Password = document.getElementById("LoginPassword").value;
-    let PasswordError = document.getElementById("LogiPasswordError");
+    let PasswordError = document.getElementById("LoginPasswordError");
     if(Password === "")
     {
         PasswordError.innerHTML = "Enter The Password";
@@ -107,7 +107,7 @@ function validateLoginPassword()
     }
     if(Password.length < 6)
     {
-        PasswordError.innerHTML = "Password Must Be atleast 6 Cha";
+        PasswordError.innerHTML = "Password Must Be atleast 6 Char";
         return false;
     }
     PasswordError.innerHTML = "";
@@ -129,7 +129,7 @@ function checkAccount()
     }
     if(moderators[Position].password !== Password)
     {
-        PasswordError.innerHTML = "Wrong pasword";
+        PasswordError.innerHTML = "Wrong password";
         return false;
     }
     return true;
@@ -139,7 +139,7 @@ function collect_login()
 {
     let validid = validateLoginId();
     let validpassword = validateLoginPassword();
-    let Message = document.getElementById("LogiMessage");
+    let Message = document.getElementById("LoginMessage");
 
     if(validid && validpassword && checkAccount())
     {
@@ -149,7 +149,7 @@ function collect_login()
     }
     else
     {
-        Message.innerHTML = "Login failed, pleas check the red messages below";
+        Message.innerHTML = "Login failed, please check the red messages below";
         Message.style.color = "red";
     }
     return false;
