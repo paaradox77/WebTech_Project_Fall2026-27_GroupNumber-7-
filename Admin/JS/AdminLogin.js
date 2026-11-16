@@ -13,3 +13,30 @@ function makeCaptcha()
     document.getElementById("Captcha").value = "";
 }
 
+
+function validateAdminLogin()
+{
+    let validAdminID = validatePattern("AdminID", "AdminIDError", "Admin ID", /^ADM-[0-9]{4}$/, "ADM-1234");
+    let validPassword = validatePassword("Password", "PasswordError");   // must follow the registration rules
+    let validCaptcha = validateCaptcha();
+
+    let isValid = validAdminID && validPassword && validCaptcha;
+
+    if (isValid)
+    {
+        let adminID = document.getElementById("AdminID").value.trim().toUpperCase();
+        let message = "Login details for " + adminID + " are valid!";
+
+        if (document.getElementById("Remember").checked)
+        {
+            message = message + " (Remember me is ON)";
+        }
+        showResult(true, message);
+    }
+    else
+    {
+        showResult(false);
+    }
+
+    return false;  
+}
