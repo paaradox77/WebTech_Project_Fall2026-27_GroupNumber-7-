@@ -97,8 +97,8 @@ Fatema Abdden
 
 Responsibility: Supervise interactions between freelancers and clients, investigate complaints, and review disputes and payment-related issues.
 No.	HTML Page	Main Tasks
-1	ModeratorLogin.html	Moderator ID, password and CAPTCHA validation
-2	ModeratorRegistration.html	Moderator registration interface, official email, department and password validation
+1	ModeratorLogin.html	Moderator ID, password validation
+2	ModeratorRegistration.html	Moderator registration interface, official email and password validation
 3	ReviewReports.html	View submitted reports, review evidence, select decisions and write moderation notes
 4	ManageDisputes.html	Review disputes, inspect order information, record findings and propose resolutions
 5	ReviewPayments.html	Review transaction complaints, verify payment information and record refund recommendations or escalations
