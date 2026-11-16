@@ -1,62 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SkillBridge BD - Freelancing Marketplace</title>
-        <link rel="stylesheet" href="Design/Style.css">
-        <script src="JS/Index.js"></script>
-    </head>
-    <body>
-        <img src="Images/logo.png" id="logo" alt="SkillBridge BD Logo">
-
-        <div class="header">
-            <h1>SkillBridge BD</h1>
-            <p>Choose a user type to open its pages</p>
-        </div>
-
-        <div class="topnav">
-            <h1>SkillBridge BD</h1>
-            <p>Choose a user type to open its pages</p>
-        </div>
-
-        <div class="topnav">
-            <a href="index.html" class="active">Home</a>
-            <a href="https://jihad.epizy.com/">Portfolio</a>
-            <a href="#">SkillBridge BD</a>
-        </div>
-
-        # User types: one card + one button each. The button calls goToUser() in JS/Index.js
-        <div class="user-grid">
-            
-            <div class="user-card admin">
-                <h2>Admin</h2>
-                <p>Login, Restration, add users, manage projects and reports.</p>
-                <button type="button" class="user-btn" onclick="goToUser('admin')">Admin Panel</button>
-            </div>
-            <div class="user-card freelancer">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SkillBridge BD connects Bangladeshi freelancers with clients and meaningful work.">
+    <title>SkillBridge BD | Freelance Marketplace</title>
+    <link rel="stylesheet" href="Design/Style.css">
+    <script src="JS/Common.js" defer></script>
+    <script src="JS/Index.js" defer></script>
+</head>
+<body>
+    <header class="page-heading">
+        <h1>SkillBridge BD</h1>
+        <p>A local-first freelance marketplace connecting Bangladesh's independent talent with great clients.</p>
+    </header>
+    <nav class="topnav" aria-label="Main navigation">
+        <a href="index.html" class="active" aria-current="page">Home</a>
+        <a href="Freelancer/FreelancerLogin.html">Freelancer Portal</a>
+        <a href="Moderator/Moderator.html">Moderator</a>
+    </nav>
+    <main class="page-shell">
+        <section class="user-grid" aria-label="Choose a role">
+            <article class="user-card freelancer">
                 <h2>Freelancer</h2>
-                <p>Login, registration, manage projects, gigs, submit proposals, and view earnings.</p>
-                <button type="button" class="user-btn" onclick="goToUser('freelancer')">Freelancer Panel</button>
-            </div>
-            <div class="user-card client">
+                <p>Register, publish services, browse Bangladesh-based projects, and submit proposals.</p>
+                <a class="button" href="Freelancer/FreelancerLogin.html">Open Freelancer Portal</a>
+            </article>
+            <article class="user-card client">
                 <h2>Client</h2>
-                <p>Login, registration, manage projects, submit proposals, and view earnings.</p>
-                <button type="button" class="user-btn" onclick="goToUser('client')">Client Panel</button>
-            </div>
-            <div class="user-card moderator">
+                <p>Discover local talent and commission work for your business.</p>
+                <button class="user-btn" type="button" data-role="client">Client Portal</button>
+            </article>
+            <article class="user-card admin">
+                <h2>Admin</h2>
+                <p>Manage accounts, marketplace operations, and platform settings.</p>
+                <button class="user-btn" type="button" data-role="admin">Admin Portal</button>
+            </article>
+            <article class="user-card moderator">
                 <h2>Moderator</h2>
-                <p>Login, registration, manage projects, gigs, submit proposals, and view earnings.</p>
-                <button type="button" class="user-btn" onclick="goToUser('freelancer')">Freelancer Panel</button>
-            </div>
-
-        </div>
-
-
-        <div class="footer">
-            <h5>Created By Jubayer Ahamed</h5>
-
-
-
-
-    </body>
+                <p>Review marketplace content and help keep the community safe.</p>
+                <a class="button" href="Moderator/Moderator.html">Moderator Portal</a>
+            </article>
+        </section>
+    </main>
+    <footer class="footer"><p>SkillBridge BD · Made for Bangladesh's freelance community</p></footer>
+</body>
+</html>
