@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Publish a freelance service on SkillBridge BD.">
+    <title>Create a Service | SkillBridge BD</title>
+    <link rel="stylesheet" href="../Design/Style.css">
+    <script src="../JS/Common.js" defer></script>
+    <script src="JS/CreateService.js" defer></script>
+</head>
+<body class="theme-freelancer">
+    <header class="page-heading">
+        <h1>SkillBridge BD</h1>
+        <p>Turn your expertise into a clear, bookable service for clients.</p>
+    </header>
+    <nav class="topnav" aria-label="Freelancer navigation">
+        <a href="FreelancerLogin.html">1. Login</a>
+        <a href="FreelancerRegistration.html">2. Register</a>
+        <a href="CreateService.html" class="active" aria-current="page">3. Create Service / Gig</a>
+        <a href="BrowseProjects.html">4. Browse Projects</a>
+        <a href="SubmitProposal.html">5. Submit Proposal</a>
+        <a href="../index.html">Switch Role</a>
+    </nav>
+    <main class="page-shell">
+        <div class="content-grid">
+            <section class="form-panel">
+                <h2>Publish a service</h2>
+                <div id="result" class="result-box" role="status" hidden></div>
+                <form id="service-form" novalidate>
+                    <div class="form-field">
+                        <label for="service-title">Service title</label>
+                        <input id="service-title" name="title" type="text" minlength="11" maxlength="99" required>
+                        <small id="title-count" class="char-count">0 / 99 characters (minimum 11)</small>
+                        <small class="field-error" hidden></small>
+                    </div>
+                    <div class="form-field">
+                        <label for="category">Category</label>
+                        <select id="category" name="category" required>
+                            <option value="">Choose a category</option>
+                            <option>Web Development</option><option>Graphic Design</option>
+                            <option>Digital Marketing</option><option>UI/UX Design</option>
+                            <option>Mobile App Dev</option><option>Video &amp; Animation</option>
+                        </select>
+                        <small class="field-error" hidden></small>
+                    </div>
+                    <div class="form-field">
+                        <label for="description">Service description</label>
+                        <textarea id="description" name="description" minlength="100" required></textarea>
+                        <small id="description-count" class="char-count">0 / 100 minimum</small>
+                        <small class="field-error" hidden></small>
+                    </div>
+                    <div class="form-field">
+                        <label for="thumbnail">Service thumbnail (JPG, PNG, or WebP; up to 5 MB)</label>
+                        <input id="thumbnail" name="thumbnail" type="file" accept=".jpg,.jpeg,.png,.webp">
+                        <small class="field-hint">Optional. Images are validated locally; this demo does not upload files.</small>
+                        <small class="field-error" hidden></small>
+                    </div>
+                    <fieldset class="form-field">
+                        <legend class="form-label">Skills (select at least one)</legend>
+                        <div class="choice-list">
+                            <label><input type="checkbox" name="skills" value="HTML/CSS"> HTML/CSS</label>
+                            <label><input type="checkbox" name="skills" value="JavaScript"> JavaScript</label>
+                            <label><input type="checkbox" name="skills" value="React"> React</label>
+                            <label><input type="checkbox" name="skills" value="Figma"> Figma</label>
+                            <label><input type="checkbox" name="skills" value="Node.js"> Node.js</label>
+                            <label><input type="checkbox" name="skills" value="SEO"> SEO</label>
+                            <label><input type="checkbox" name="skills" value="Photoshop"> Photoshop</label>
+                        </div>
+                        <small class="field-error" hidden></small>
+                    </fieldset>
+                    <div class="form-field">
+                        <label for="price">Starting price (BDT)</label>
+                        <input id="price" name="price" type="number" min="1" step="1" required>
+                        <small class="field-error" hidden></small>
+                    </div>
+                    <div class="form-field">
+                        <label for="delivery-days">Delivery time</label>
+                        <input id="delivery-days" name="deliveryDays" type="number" min="1" max="60" step="1" required>
+                        <small class="field-error" hidden></small>
+                    </div>
+                    <div class="form-field">
+                        <label for="revisions">Revision limit</label>
+                        <select id="revisions" name="revisions" required>
+                            <option value="">Choose a revision limit</option>
+                            <option value="1">1 revision</option><option value="2">2 revisions</option>
+                            <option value="3">3 revisions</option><option value="5">5 revisions</option>
+                            <option value="unlimited">Unlimited</option>
+                        </select>
+                        <small class="field-error" hidden></small>
+                    </div>
+                    <div class="form-actions">
+                        <button class="button" type="submit">Publish service</button>
+                        <button id="fill-sample" class="button button-secondary" type="button">Fill Sample Gig</button>
+                    </div>
+                </form>
+            </section>
+            <aside class="panel">
+                <h2>Published services</h2>
+                <p class="muted">Demo services and your locally saved gigs.</p>
+                <div id="service-list" class="data-grid" aria-live="polite"></div>
+            </aside>
+        </div>
+    </main>
+    <footer class="footer"><p>SkillBridge BD · Services priced in Bangladeshi Taka</p></footer>
+</body>
+</html>
