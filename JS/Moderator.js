@@ -77,3 +77,80 @@ function logOut()
     showPage("Login");
 }
 
+//Login
+function validateLoginId()
+{
+    let LoginId = document.getElementById("LoginId").value.trim();
+    let IdError = document.getElementById("LoginIdError");
+    if(LoginId === "")
+    {
+        IdError.innerHTML = "Ente The Moderator ID";
+        return false;
+    }
+    if(!isModeratorId(LoginId))
+    {
+        IdError.innerHTML = "Moderator ID must look like MOD-1234";
+        return false;
+    }
+    IdError.innerHTML = "";
+    return true;
+}
+
+function validateLoginPassword()
+{
+    let Password = document.getElementById("LoginPassword").value;
+    let PasswordError = document.getElementById("LogiPasswordError");
+    if(Password === "")
+    {
+        PasswordError.innerHTML = "Enter The Password";
+        return false;
+    }
+    if(Password.length < 6)
+    {
+        PasswordError.innerHTML = "Password Must Be atleast 6 Cha";
+        return false;
+    }
+    PasswordError.innerHTML = "";
+    return true;
+}
+
+function checkAccount()
+{
+    let LoginId = document.getElementById("LoginId").value.trim();
+    let Password = document.getElementById("LoginPassword").value;
+    let IdError = document.getElementById("LoginIdError");
+    let PasswordError = document.getElementById("LoginPasswordError");
+
+    let Position = findById(moderators, LoginId);
+    if(Position === -1)
+    {
+        IdError.innerHTML = "This Moderator ID is not registered, please register first";
+        return false;
+    }
+    if(moderators[Position].password !== Password)
+    {
+        PasswordError.innerHTML = "Wrong pasword";
+        return false;
+    }
+    return true;
+}
+
+function collect_login()
+{
+    let validid = validateLoginId();
+    let validpassword = validateLoginPassword();
+    let Message = document.getElementById("LogiMessage");
+
+    if(validid && validpassword && checkAccount())
+    {
+        document.getElementById("LoginPassword").value = "";
+        Message.innerHTML = "";
+        showPage("Reports");
+    }
+    else
+    {
+        Message.innerHTML = "Login failed, pleas check the red messages below";
+        Message.style.color = "red";
+    }
+    return false;
+}
