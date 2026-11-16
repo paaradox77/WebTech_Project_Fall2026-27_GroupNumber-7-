@@ -1,0 +1,470 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    font-family: Roboto, "Segoe UI", Arial, sans-serif;
+    font-size: 20px;
+    color: black;
+    background-color: white;
+    margin: 0;
+    padding: 16px;
+}
+
+p{
+    color: red;
+    text-align: center;
+    font-weight: bold;
+    margin: 10px 0;
+    min-height: 22px;
+}
+
+.layout{
+    max-width: 1150px;
+    min-height: 88;
+    margin: 0 auto;
+}
+
+#LoginPage{
+    display: flex;
+}
+
+#RegisterPage{
+    display: none;
+}
+
+#ReviewPages{
+    display: none;
+}
+
+#ReportsSection{
+    display: none;
+}
+
+#DisputesSection{
+    display: none;
+}
+
+#PaymentsSection{
+    display: none;
+}
+
+.picture{
+    width: 52%;
+}
+
+.picture img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.panel{
+    width: 48%;
+    background-color: #EAD7C5;
+    padding: 40px 0 0px 0;
+}
+
+.panel h1{
+    font-family: Georgia, Times, serif;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 44px;
+    color: #6B3A12;
+    text-align: center;
+    margin: 0 0 16px 0;
+}
+
+#LoginPage form{
+    padding-left: 15%;
+}
+
+#LoginPage table{
+    border-collapse: collapse;
+     margin-top: 40px;
+}
+
+#LoginPage td{
+    padding: 0;
+    vertical-align: top;
+}
+
+#LoginPage label{
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+#LoginPage input[type="text"],
+#LoginPage input[type="password"]{
+    display: block;
+    width: 300px;
+    height: 38px;
+    margin-left: 10px;
+    padding: 0 10px;
+    border: none;
+    background-color: #FDF7FF;
+    font-family: Roboto, "Segoe UI", Arial, sans-serif;
+    font-size: 16px;
+}
+
+#LoginPage td p{
+    text-align: left;
+    margin: 2px 0 10px 1px;
+    min-height: 18px;
+    font-size: 14px;
+}
+
+#LoginButtons{
+    margin: 130px 0 0 10px;
+}
+
+#RegisterPage form{
+    padding-left: 10%;
+}
+
+#RegisterPage table{
+    border-collapse: collapse;
+     margin-top: 60px;
+}
+
+#RegisterPage td{
+    padding: 5px 10px 5px 0;
+    vertical-align: top;
+}
+
+#RegisterPage label{
+    display: block;
+    width: 170px;
+    padding-top: 8px;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+#RegisterPage input[type="text"],
+#RegisterPage input[type="email"],
+#RegisterPage input[type="password"]{
+    width: 280px;
+    height: 36px;
+    padding: 0 10px;
+    border: none;
+    background-color: #FDF7FF;
+    font-family: Roboto, "Segoe UI", Arial, sans-serif;
+    font-size: 16px;
+}
+
+#RegisterPage td p{
+    text-align: left;
+    margin: 2px 0 0 0;
+    min-height: 0;
+    font-size: 13px;
+}
+
+#RegisterButtons{
+    margin: 130px 0 0 0;
+}
+
+#LoginSubmit{
+    padding: 14px 20px;
+    margin: 0 110px 10px 0;  
+    border: none;
+    color: #222;
+    background-color: #F2A68B;
+    font-family: Roboto, "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#LoginToRegister{
+    padding: 14px 28px;
+    margin: 0 0 0 30px;
+    border: none;
+    color: #222;
+    background-color: #CFF8FF;
+    font-family: Roboto, "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#RegisterSubmit{
+    padding: 14px 28px;
+    margin: 0 110px 0 40px;
+    border: none;
+    color: #222;
+    background-color: #F2A68B;
+    font-family: Roboto, "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#RegisterToLogin{
+    padding: 14px 28px;
+    margin: 0;
+    border: none;
+    color: #222;
+    background-color: #CFF8FF;
+    font-family: Roboto, "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#BtnReports{
+    display: block;
+    width: 60%;
+    margin: 0 auto 40px auto;
+    padding: 12px 10px;
+    border: none;
+    color: #333;
+    background-color: #BAC4F8;
+    font-family: Roboto, "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
+#BtnDisputes{
+    display: block;
+    width: 60%;
+    margin: 0 auto 30px auto;
+    padding: 12px 10px;
+    border: none;
+    color: #333;
+    background-color: #E99492;
+    font-family: Roboto, "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
+#BtnPayments{
+    display: block;
+    width: 60%;
+    margin: 0 auto 30px auto;
+    padding: 12px 10px;
+    border: none;
+    color: #333;
+    background-color: #B8E8D3;
+    font-family: Roboto, "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
+#BtnLogout{
+    display: block;
+    width: 60%;
+    margin: 100px auto 0 auto;
+    padding: 12px 10px;
+    border: none;
+    color: #333;
+    background-color: #E64F59;
+    font-family: Roboto, "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
+#ReportSave{
+    width: 125px;
+    padding: 8px 4px;
+    margin: 0 28px 0 0;
+    border: none;
+    color: #222;
+    background-color: #BAF5D3;
+    font-family: Roboto, "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#ReportClear{
+    width: 125px;
+    padding: 8px 10px;
+    margin: 0 28px 0 0;
+    border: none;
+    color: #222;
+    background-color: #CFF8FF;
+    font-family: Roboto, "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#DisputeSave{
+    width: 125px;
+    padding: 8px 4px;
+    margin: 0 28px 0 0;
+    border: none;
+    color: #222;
+    background-color: #BAF5D3;
+    font-family: Roboto, "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#DisputeClear{
+    width: 125px;
+    padding: 8px 4px;
+    margin: 0 28px 0 0;
+    border: none;
+    color: #222;
+    background-color: #CFF8FF;
+    font-family: Roboto, "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#PaymentSave{
+    width: 125px;
+    padding: 8px 4px;
+    margin: 0 28px 0 0;
+    border: none;
+    color: #222;
+    background-color: #BAF5D3;
+    font-family: Roboto, "Segoe UI", Arial, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#PaymentClear{
+    width: 125px;
+    padding: 8px 4px;
+    margin: 0 28px 0 0;
+    border: none;
+    color: #222;
+    background-color: #CFF8FF;
+    font-family: Roboto, "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.sidebar{
+    width: 31%;
+    padding: 30px 0 40px 0;
+    background-color: #FDFACF;
+}
+
+.sidebar h2{
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color:#6B3A12;
+    margin: 0 0 55px 0;
+}
+
+.content{
+    flex: 1;
+    margin-left: 3px;
+    padding: 16px 18px 10px 14px;
+    background-color: #E6E6EA;
+}
+
+.notice{
+    margin: 0 0 21px 0;
+    padding: 8px 14px;
+    background-color: #FDFACF;
+    border-left: 6px solid #E99492;
+    font-size: 14px;
+}
+
+.content table{
+    border-collapse: collapse;
+}
+
+.content td{
+    padding: 4px 6px;
+    vertical-align: top;
+}
+
+.content label{
+    display: block;
+    width: 260px;
+    padding-top: 4px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #6B3F1E;
+}
+
+.content input[type="text"],
+.content input[type="number"],
+.content select,
+.content textarea{
+    width: 300px;
+    padding: 0 10px;
+    border: none;
+    background-color: #FDF7FF;
+    font-family: Roboto, "Segoe UI", Arial, sans-serif;
+    font-size: 16px;
+}
+
+.content input[type="text"],
+.content input[type="number"],
+.content select{
+    height: 38px;
+}
+
+.content textarea{
+    height: 90px;
+    padding: 8px 10px;
+    resize: none;
+}
+
+.content td p{
+    text-align: left;
+    margin: 2px 0 0 0;
+    min-height: 18px;
+    font-size: 14px;
+}
+
+.buttons{
+    margin: 12px 0 0 0;
+}
+
+.list{
+    height: 260px;
+    margin-top: 6px;
+    padding: 6px 20px;
+    background-color: #FBF3FC;
+    overflow-y: auto;
+}
+
+.list h3{
+    margin: 8px 0 0 0;
+    text-align: center;
+    color: #6B3F1E;
+}
+
+.list table{
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.list th{
+    padding: 14px 15px;
+    font-size: 19px;
+}
+
+.list td{
+    padding: 11px 6px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.list a{
+    color: #6B3F1E;
+}
