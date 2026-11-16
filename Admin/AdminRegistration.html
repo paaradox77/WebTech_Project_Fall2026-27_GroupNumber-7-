@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Registration</title>
+        <link rel="stylesheet" href="../Design/Style.css">
+        <script src="../JS/Common.js"></script>
+        <script src="JS/AdminRegistration.js"></script>
+    </head>
+
+    <body class="admin">
+
+        <img src="../Images/logo.png" id="logo" alt="Logo">
+
+        <div class="header">
+            <h1>Admin Registration Form</h1>
+        </div>
+
+
+        <div class="topnav">
+            <a href="../index.html">Home</a>
+            <a href="AdminLogin.html">Login</a>
+            <a href="AdminRegistration.html" class="active">Registration</a>
+            <a href="AddStaff.html">Add Staff</a>
+            <a href="ManageDepartment.html">Departments</a>
+            <a href="GenerateReport.html">Reports</a>
+        </div>
+
+        <form onsubmit="return validateAdminForm()" onreset="clearAllErrors()" novalidate>
+
+            <fieldset>
+                <legend>Admin Information</legend>
+                <table>
+                    <tr>
+                        <td><label for="AdminName">Full Name:</label></td>
+                        <td><input type="text" id="AdminName" placeholder="Enter full name">
+                            <p class="error" id="NameError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="AdminID">Admin ID:</label></td>
+                        <td><input type="text" id="AdminID" placeholder="e.g. ADM-1234">
+                            <p class="error" id="AdminIDError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="AdminEmail">Email:</label></td>
+                        <td><input type="email" id="AdminEmail" placeholder="Enter email">
+                            <p class="error" id="EmailError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="AdminPhone">Phone:</label></td>
+                        <td><input type="tel" id="AdminPhone" placeholder="e.g. 01712345678">
+                            <p class="error" id="PhoneError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label>Gender:</label></td>
+                        <td>
+                            <label class="choice"><input type="radio" name="gender" value="Male"> Male</label>
+                            <label class="choice"><input type="radio" name="gender" value="Female"> Female</label>
+                            <label class="choice"><input type="radio" name="gender" value="Other"> Other</label>
+                            <p class="error" id="GenderError"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="AdminRole">Admin Role:</label></td>
+                        <td>
+                            <select id="AdminRole">
+                                <option value="">-- Select Role --</option>
+                                <option value="Super Admin">Super Admin</option>
+                                <option value="System Admin">System Admin</option>
+                                <option value="HR Admin">HR Admin</option>
+                            </select>
+                            <p class="error" id="RoleError"></p>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>Permissions</legend>
+                <table>
+                    <tr>
+                        <td><label>Can Manage:</label></td>
+                        <td>
+                            <label class="choice"><input type="checkbox" name="permission" value="Doctors"> Doctors</label>
+                            <label class="choice"><input type="checkbox" name="permission" value="Nurses"> Nurses</label>
+                            <label class="choice"><input type="checkbox" name="permission" value="Patients"> Patients</label>
+                            <label class="choice"><input type="checkbox" name="permission" value="Reports"> Reports</label>
+                            <p class="error" id="PermissionError"></p>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>Account</legend>
+                <table>
+                    <tr>
+                        <td><label for="UserName">Username:</label></td>
+                        <td><input type="text" id="UserName" placeholder="4 - 15 characters">
+                            <p class="error" id="UserNameError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="Password">Password:</label></td>
+                        <td><input type="password" id="Password" placeholder="Enter password">
+                            <p class="hint">At least 8 characters with an uppercase letter, a lowercase letter and a number</p>
+                            <p class="error" id="PasswordError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="ConfirmPassword">Confirm Password:</label></td>
+                        <td><input type="password" id="ConfirmPassword" placeholder="Re-enter password">
+                            <p class="error" id="ConfirmError"></p></td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <p id="ResultText"></p>
+
+            <input type="submit" id="submit" value="Register">
+            <input type="reset" id="reset" value="Reset">
+            <p class="hint">Already registered? <a href="AdminLogin.html">Login here</a></p>
+        </form>
+
+    </body>
