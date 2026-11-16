@@ -287,3 +287,127 @@ function collect_registration()
     return false;
 }
 
+//Review Report
+function showReport()
+{
+    let ReportId = document.getElementById("ReportId").value;
+    let Position = findById(reports, ReportId);
+
+    if(Position === -1)
+    {
+        document.getElementById("Reporter").value = "";
+        document.getElementById("ReportedUser").value = "";
+        document.getElementById("ReportCategory").value = "";
+        document.getElementById("ReportDescription").value = "";
+        document.getElementById("EvidenceUrl").value = "";
+    }
+    else
+    {
+        document.getElementById("Reporter").value = reports[Position].reporter;
+        document.getElementById("ReportedUser").value = reports[Position].reportedUser;
+        document.getElementById("ReportCategory").value = reports[Position].category;
+        document.getElementById("ReportDescription").value = reports[Position].description;
+        document.getElementById("EvidenceUrl").value = reports[Position].evidence;
+    }
+}
+
+function validateReportId()
+{
+    let ReportId = document.getElementById("ReportId").value;
+    let IdError = document.getElementById("ReportIdError");
+    if(ReportId === "")
+    {
+        IdError.innerHTML = "Please select a Report ID";
+        return false;
+    }
+    IdError.innerHTML = "";
+    return true;
+}
+
+function validateEvidence()
+{
+    let Url = document.getElementById("EvidenceUrl").value.trim();
+    let UrlError = document.getElementById("EvidenceError");
+    if(Url !== "" && !isUrl(Url))
+    {
+        UrlError.innerHTML = "The URL must start with http:// or https://";
+        return false;
+    }
+    UrlError.innerHTML = "";
+    return true;
+}
+
+function validateReportDecision()
+{
+    let Decision = document.getElementById("ReportDecision").value;
+    let DecisionError = document.getElementById("ReportDecisionError");
+    if(Decision === "")
+    {
+        DecisionError.innerHTML = "Please select a decision";
+        return false;
+    }
+    DecisionError.innerHTML = "";
+    return true;
+}
+
+function validateReportNotes()
+{
+    let Notes = document.getElementById("ReportNotes").value.trim();
+    let Decision = document.getElementById("ReportDecision").value;
+    let NotesError = document.getElementById("ReportNotesError");
+    if(Notes === "")
+    {
+        NotesError.innerHTML = "Enter The Moderator notes";
+        return false;
+    }
+    if(Decision === "Content Restricted" || Decision === "Content Removed" || Decision === "Account Suspended")
+    {
+        if(Notes.length < 10)
+        {
+            NotesError.innerHTML = "A reason is required for this decision, Atleast 10 Char";
+            return false;
+        }
+    }
+    NotesError.innerHTML = "";
+    return true;
+}
+
+function collect_report()
+{
+    let validid = validateReportId();
+    let validevidence = validateEvidence();
+    let validdecision = validateReportDecision();
+    let validnotes = validateReportNotes();
+    let Message = document.getElementById("ReportMessage");
+
+    if(validid && validevidence && validdecision && validnotes)
+    {
+        let ReportId = document.getElementById("ReportId").value;
+        let Decision = document.getElementById("ReportDecision").value;
+ let Status = "Reviewed";
+        if(Decision === "Escalate to Admin")
+        {
+            Status = "Escalated";
+        }
+        let Position = findById(reports, ReportId);
+        document.getElementById("ReportStatus" + Position).innerHTML = Status;
+        document.getElementById("ReportStatus" + Position).style.color = "green";
+
+        Message.innerHTML = "Decision saved for " + ReportId + " (a recommendation only)";
+        Message.style.color = "green";
+    }
+    else
+    {
+        Message.innerHTML = "";
+    }
+    return false;
+}
+
+function clearReport()
+{
+    document.getElementById("ReportIdError").innerHTML = "";
+    document.getElementById("EvidenceError").innerHTML = "";
+    document.getElementById("ReportDecisionError").innerHTML = "";
+    document.getElementById("ReportNotesError").innerHTML = "";
+    document.getElementById("ReportMessage").innerHTML = "";
+}
