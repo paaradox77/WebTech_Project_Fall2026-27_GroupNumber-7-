@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse freelance projects posted by clients across Bangladesh.">
+    <title>Browse Projects | SkillBridge BD</title>
+    <link rel="stylesheet" href="../Design/Style.css">
+    <script src="../JS/Common.js" defer></script>
+    <script src="JS/BrowseProjects.js" defer></script>
+</head>
+<body class="theme-freelancer">
+    <header class="page-heading">
+        <h1>SkillBridge BD</h1>
+        <p>Find client projects that fit your skills, schedule, and budget.</p>
+    </header>
+    <nav class="topnav" aria-label="Freelancer navigation">
+        <a href="FreelancerLogin.html">1. Login</a>
+        <a href="FreelancerRegistration.html">2. Register</a>
+        <a href="CreateService.html">3. Create Service / Gig</a>
+        <a href="BrowseProjects.html" class="active" aria-current="page">4. Browse Projects</a>
+        <a href="SubmitProposal.html">5. Submit Proposal</a>
+        <a href="../index.html">Switch Role</a>
+    </nav>
+    <main class="page-shell">
+        <section class="panel" aria-labelledby="filters-heading">
+            <h2 id="filters-heading">Search and filter projects</h2>
+            <div id="result" class="result-box" role="status" hidden></div>
+            <form id="filter-form" novalidate>
+                <div class="filters-grid">
+                    <div class="filter-field">
+                        <label for="keyword">Search title or description</label>
+                        <input id="keyword" name="keyword" type="search" placeholder="e.g. e-commerce">
+                    </div>
+                    <div class="filter-field">
+                        <label for="category">Category</label>
+                        <select id="category" name="category">
+                            <option value="">All categories</option><option>Web Development</option>
+                            <option>Graphic Design</option><option>Digital Marketing</option>
+                            <option>UI/UX Design</option><option>Mobile App Dev</option>
+                            <option>Video &amp; Animation</option>
+                        </select>
+                    </div>
+                    <div class="filter-field">
+                        <label for="min-budget">Minimum budget (BDT)</label>
+                        <input id="min-budget" name="minBudget" type="number" min="0" step="1">
+                        <small class="field-error" hidden></small>
+                    </div>
+                    <div class="filter-field">
+                        <label for="max-budget">Maximum budget (BDT)</label>
+                        <input id="max-budget" name="maxBudget" type="number" min="0" step="1">
+                        <small class="field-error" hidden></small>
+                    </div>
+                    <div class="filter-field">
+                        <label for="skill">Required skill</label>
+                        <select id="skill" name="skill">
+                            <option value="">Any skill</option><option>HTML/CSS</option>
+                            <option>JavaScript</option><option>React</option><option>Figma</option>
+                            <option>Node.js</option><option>SEO</option><option>Photoshop</option>
+                        </select>
+                    </div>
+                    <div class="filter-field">
+                        <label for="deadline">Deadline date</label>
+                        <input id="deadline" name="deadline" type="date">
+                    </div>
+                    <div class="filter-field">
+                        <label for="deadline-mode">Deadline comparison</label>
+                        <select id="deadline-mode" name="deadlineMode">
+                            <option value="on-or-before">On or before</option>
+                            <option value="on-or-after">On or after</option>
+                        </select>
+                    </div>
+                    <div class="filter-field">
+                        <label for="sort">Sort by</label>
+                        <select id="sort" name="sort">
+                            <option value="default">Default</option>
+                            <option value="budget-desc">Budget: High to Low</option>
+                            <option value="budget-asc">Budget: Low to High</option>
+                            <option value="deadline">Nearest Deadline</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="button" type="submit">Apply Filters</button>
+                    <button id="reset-filters" class="button button-secondary" type="button">Reset Filters</button>
+                </div>
+            </form>
+        </section>
+        <section class="panel" aria-labelledby="projects-heading">
+            <h2 id="projects-heading">Available client projects</h2>
+            <div id="project-list" class="data-grid" aria-live="polite"></div>
+        </section>
+    </main>
+    <footer class="footer"><p>SkillBridge BD · Find your next project</p></footer>
+</body>
+</html>

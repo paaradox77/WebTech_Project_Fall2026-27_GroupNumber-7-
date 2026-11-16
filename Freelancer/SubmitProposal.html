@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Submit a proposal for a SkillBridge BD client project.">
+    <title>Submit a Proposal | SkillBridge BD</title>
+    <link rel="stylesheet" href="../Design/Style.css">
+    <script src="../JS/Common.js" defer></script>
+    <script src="JS/SubmitProposal.js" defer></script>
+</head>
+<body class="theme-freelancer">
+    <header class="page-heading">
+        <h1>SkillBridge BD</h1>
+        <p>Introduce your approach, suggest a fair price, and win your next project.</p>
+    </header>
+    <nav class="topnav" aria-label="Freelancer navigation">
+        <a href="FreelancerLogin.html">1. Login</a>
+        <a href="FreelancerRegistration.html">2. Register</a>
+        <a href="CreateService.html">3. Create Service / Gig</a>
+        <a href="BrowseProjects.html">4. Browse Projects</a>
+        <a href="SubmitProposal.html" class="active" aria-current="page">5. Submit Proposal</a>
+        <a href="../index.html">Switch Role</a>
+    </nav>
+    <main class="page-shell">
+        <div class="content-grid">
+            <section class="form-panel">
+                <h2>Submit your proposal</h2>
+                <div id="result" class="result-box" role="status" hidden></div>
+                <form id="proposal-form" novalidate>
+                    <div class="form-field">
+                        <label for="project">Select a project</label>
+                        <select id="project" name="projectId" required>
+                            <option value="">Choose a project</option>
+                        </select>
+                        <small class="field-error" hidden></small>
+                    </div>
+                    <div id="project-info" class="status-banner" aria-live="polite">Select a project to see its budget and deadline.</div>
+                    <div class="form-field">
+                        <label for="cover-letter">Cover letter</label>
+                        <textarea id="cover-letter" name="coverLetter" minlength="50" required></textarea>
+                        <small id="cover-count" class="char-count">0 / 50 minimum</small>
+                        <small class="field-error" hidden></small>
+                    </div>
+                    <div class="form-field">
+                        <label for="proposed-price">Proposed price (BDT)</label>
+                        <input id="proposed-price" name="proposedPrice" type="number" min="1" step="1" required>
+                        <small class="field-error" hidden></small>
+                    </div>
+                    <div class="form-field">
+                        <label for="delivery-days">Delivery days (1–90)</label>
+                        <input id="delivery-days" name="deliveryDays" type="number" min="1" max="90" step="1" required>
+                        <small class="field-error" hidden></small>
+                    </div>
+                    <div class="form-field">
+                        <label for="portfolio-url">Portfolio URL</label>
+                        <input id="portfolio-url" name="portfolioUrl" type="url" placeholder="https://example.com/portfolio" required>
+                        <small class="field-error" hidden></small>
+                    </div>
+                    <div class="form-field">
+                        <label for="additional-info">Additional information (optional)</label>
+                        <textarea id="additional-info" name="additionalInfo"></textarea>
+                        <small class="field-error" hidden></small>
+                    </div>
+                    <div class="form-actions">
+                        <button class="button" type="submit">Submit Proposal</button>
+                        <button id="fill-sample" class="button button-secondary" type="button">Fill Valid Proposal</button>
+                    </div>
+                </form>
+            </section>
+            <aside class="panel">
+                <h2>Submitted proposals</h2>
+                <div id="proposal-list" aria-live="polite"></div>
+            </aside>
+        </div>
+    </main>
+    <footer class="footer"><p>SkillBridge BD · Your proposals are saved in this browser</p></footer>
+</body>
+</html>
