@@ -9,7 +9,7 @@
 
 ## Role modules (team)
 
-- [ ] Freelancer: 5 HTML pages + 5 page JavaScript files.
+- [x] Freelancer: 5 HTML pages + 5 page JavaScript files.
 - [ ] Client: 5 HTML pages + 5 page JavaScript files.
 - [ ] Admin: 5 HTML pages + 5 page JavaScript files.
 - [ ] Moderator: 5 HTML pages + 5 page JavaScript files.

@@ -1,109 +1,56 @@
-"use strict";
+function validateRegistration() {
+    let name = document.getElementById("fullName").value;
+    let email = document.getElementById("email").value;
+    let phone = document.getElementById("phone").value;
+    let dob = document.getElementById("dob").value;
+    let pass = document.getElementById("regPass").value;
+    let conf = document.getElementById("confirmPass").value;
+    let terms = document.getElementById("terms").checked;
 
-document.addEventListener("DOMContentLoaded", function () {
-    var form = document.getElementById("registration-form");
-    var nameInput = document.getElementById("full-name");
-    var emailInput = document.getElementById("email");
-    var phoneInput = document.getElementById("phone");
-    var dobInput = document.getElementById("date-of-birth");
-    var titleInput = document.getElementById("title");
-    var passwordInput = document.getElementById("password");
-    var confirmInput = document.getElementById("confirm-password");
-    var termsInput = document.getElementById("terms");
-    var result = document.getElementById("result");
+    let isValid = true;
 
-    dobInput.max = getToday();
+    document.getElementById("nameErr").innerHTML = name === "" ? "Name is required." : "";
+    if (name === "") isValid = false;
 
-    function renderFreelancers() {
-        var users = readStorage("sb_freelancers", []);
-        document.getElementById("registered-list").innerHTML = users.map(function (user) {
-            return "<tr><td>" + escapeHTML(user.id) + "</td><td>" + escapeHTML(user.name) +
-                "</td><td>" + escapeHTML(user.title || "Freelancer") + '</td><td><span class="' +
-                getStatusBadgeClass(user.status || "Active") + '">' + escapeHTML(user.status || "Active") +
-                "</span></td></tr>";
-        }).join("");
+    document.getElementById("emailErr").innerHTML = email === "" ? "Email is required." : "";
+    if (email === "") isValid = false;
+
+    // Simple BD phone verification check (starts with 01 and total 11 digits)
+    let phoneRegex = /^01[3-9]\d{8}$/;
+    document.getElementById("phoneErr").innerHTML = !phoneRegex.test(phone) ? "Enter valid BD phone (e.g., 01712345678)." : "";
+    if (!phoneRegex.test(phone)) isValid = false;
+
+    // 18+ Age Validation logic
+    let dobDate = new Date(dob);
+    let today = new Date();
+    let age = today.getFullYear() - dobDate.getFullYear();
+    let m = today.getMonth() - dobDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < dobDate.getDate())) {
+        age--;
     }
 
-    document.getElementById("fill-sample").addEventListener("click", function () {
-        nameInput.value = "Samira Akter";
-        emailInput.value = "samira.akter@example.com";
-        phoneInput.value = "01912345678";
-        var birth = new Date();
-        birth.setFullYear(birth.getFullYear() - 24);
-        var localBirth = new Date(birth.getTime() - birth.getTimezoneOffset() * 60000);
-        dobInput.value = localBirth.toISOString().slice(0, 10);
-        titleInput.value = "Full-Stack Web Developer";
-        passwordInput.value = "SkillBridge12";
-        confirmInput.value = "SkillBridge12";
-        termsInput.checked = true;
-        form.querySelectorAll("input").forEach(function (input) {
-            if (input.type !== "checkbox") clearError(input);
-        });
-        showToast("Sample freelancer details filled.");
-    });
+    let dobErr = document.getElementById("dobErr");
+    if (dob === "") {
+        dobErr.innerHTML = "Date of birth is required.";
+        isValid = false;
+    } else if (age < 18) {
+        dobErr.innerHTML = "You must be at least 18 years old.";
+        isValid = false;
+    } else {
+        dobErr.innerHTML = "";
+    }
 
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
-        result.hidden = true;
-        var users = readStorage("sb_freelancers", []);
-        var nameValid = validateTextLength(nameInput.value, 3, 60);
-        var emailValid = validateEmail(emailInput.value);
-        var emailUnique = !users.some(function (user) {
-            return user.email.toLowerCase() === emailInput.value.trim().toLowerCase();
-        });
-        var phoneValid = validatePhone(phoneInput.value);
-        var dobValid = validateDate(dobInput.value) && dobInput.value <= getToday();
-        var adult = false;
-        if (dobValid) {
-            var birthDate = new Date(dobInput.value + "T00:00:00");
-            var today = new Date(getToday() + "T00:00:00");
-            var age = today.getFullYear() - birthDate.getFullYear();
-            var birthdayNotReached = today.getMonth() < birthDate.getMonth() ||
-                (today.getMonth() === birthDate.getMonth() && today.getDate() < birthDate.getDate());
-            adult = age - (birthdayNotReached ? 1 : 0) >= 18;
-        }
-        var titleValid = validateRequired(titleInput.value) && validateTextLength(titleInput.value, 1, 80);
-        var passwordValid = validatePassword(passwordInput.value);
-        var confirmValid = validateConfirmPassword(confirmInput.value, passwordInput.value);
-        var termsValid = validateCheckbox(termsInput);
-        var valid = true;
+    document.getElementById("passErr").innerHTML = pass.length < 6 ? "Password must be at least 6 characters." : "";
+    if (pass.length < 6) isValid = false;
 
-        if (nameValid) clearError(nameInput); else { showError(nameInput, "Enter a name between 3 and 60 characters."); valid = false; }
-        if (!emailValid) { showError(emailInput, "Enter a valid email address."); valid = false; }
-        else if (!emailUnique) { showError(emailInput, "An account with this email already exists."); valid = false; }
-        else clearError(emailInput);
-        if (phoneValid) clearError(phoneInput); else { showError(phoneInput, "Enter a valid Bangladesh number, such as 01712345678."); valid = false; }
-        if (!dobValid) { showError(dobInput, "Enter a valid date of birth that is not in the future."); valid = false; }
-        else if (!adult) { showError(dobInput, "You must be at least 18 years old to register."); valid = false; }
-        else clearError(dobInput);
-        if (titleValid) clearError(titleInput);         else { showError(titleInput, "Enter a professional title of 1–80 characters."); valid = false; }
-        if (passwordValid) clearError(passwordInput); else { showError(passwordInput, "Use at least 8 characters with uppercase, lowercase, and a number."); valid = false; }
-        if (confirmValid) clearError(confirmInput); else { showError(confirmInput, "The passwords do not match."); valid = false; }
-        if (termsValid) clearError(termsInput); else { showError(termsInput, "Accept the terms and conditions to continue."); valid = false; }
-        if (!valid) return;
+    document.getElementById("confErr").innerHTML = pass !== conf ? "Passwords do not match." : "";
+    if (pass !== conf) isValid = false;
 
-        var nextId = users.reduce(function (highest, user) {
-            var match = /^FRE-(\d+)$/i.exec(user.id || "");
-            return match ? Math.max(highest, Number(match[1])) : highest;
-        }, 1000) + 1;
-        var freelancer = {
-            id: "FRE-" + String(nextId).padStart(4, "0"),
-            name: nameInput.value.trim(),
-            email: emailInput.value.trim(),
-            phone: phoneInput.value.trim(),
-            dateOfBirth: dobInput.value,
-            title: titleInput.value.trim(),
-            password: passwordInput.value,
-            status: "Active"
-        };
-        users.push(freelancer);
-        if (!writeStorage("sb_freelancers", users)) return;
-        localStorage.setItem("sb_current_freelancer", freelancer.id);
-        renderFreelancers();
-        showSuccess(result, "Account created successfully. Your Freelancer ID is " + freelancer.id + ".");
-        showToast("Welcome to SkillBridge BD, " + freelancer.name + "!");
-        form.reset();
-    });
+    document.getElementById("termsErr").innerHTML = !terms ? "You must accept the terms." : "";
+    if (!terms) isValid = false;
 
-    renderFreelancers();
-});
+    if (!isValid) return false;
+
+    alert("Registration Successful!");
+    return true;
+}

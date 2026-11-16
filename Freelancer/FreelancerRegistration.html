@@ -2,89 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Join SkillBridge BD as a freelancer.">
-    <title>Freelancer Registration | SkillBridge BD</title>
-    <link rel="stylesheet" href="../Design/Style.css">
-    <script src="../JS/Common.js" defer></script>
-    <script src="JS/FreelancerRegistration.js" defer></script>
+    <title>SkillBridge BD - Freelancer Registration</title>
+    <link rel="stylesheet" href="Design/Style.css">
 </head>
-<body class="theme-freelancer">
-    <header class="page-heading">
-        <h1>SkillBridge BD</h1>
-        <p>Create your freelancer profile and showcase your professional skills.</p>
-    </header>
-    <nav class="topnav" aria-label="Freelancer navigation">
-        <a href="FreelancerLogin.html">1. Login</a>
-        <a href="FreelancerRegistration.html" class="active" aria-current="page">2. Register</a>
-        <a href="CreateService.html">3. Create Service / Gig</a>
-        <a href="BrowseProjects.html">4. Browse Projects</a>
-        <a href="SubmitProposal.html">5. Submit Proposal</a>
-        <a href="../index.html">Switch Role</a>
+<body>
+    <nav class="topnav">
+        <a href="FreelancerLogin.html">Login</a>
+        <a href="FreelancerRegistration.html" class="active">Register</a>
+        <a href="CreateService.html">Create Service</a>
+        <a href="BrowseProjects.html">Browse Projects</a>
+        <a href="SubmitProposal.html">Submit Proposal</a>
     </nav>
-    <main class="page-shell">
-        <section class="form-panel">
-            <h2>Create a freelancer account</h2>
-            <div id="result" class="result-box" role="status" hidden></div>
-            <form id="registration-form" novalidate>
-                <div class="form-field">
-                    <label for="full-name">Full name</label>
-                    <input id="full-name" name="name" type="text" autocomplete="name" minlength="3" maxlength="60" required>
-                    <small class="field-error" hidden></small>
-                </div>
-                <div class="form-field">
-                    <label for="email">Email address</label>
-                    <input id="email" name="email" type="email" autocomplete="email" required>
-                    <small class="field-error" hidden></small>
-                </div>
-                <div class="form-field">
-                    <label for="phone">Bangladesh phone number</label>
-                    <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="01712345678" required>
-                    <small class="field-error" hidden></small>
-                </div>
-                <div class="form-field">
-                    <label for="date-of-birth">Date of birth</label>
-                    <input id="date-of-birth" name="dateOfBirth" type="date" required>
-                    <small class="field-error" hidden></small>
-                </div>
-                <div class="form-field">
-                    <label for="title">Professional title</label>
-                    <input id="title" name="title" type="text" maxlength="80" placeholder="Full-Stack Web Developer" required>
-                    <small class="field-error" hidden></small>
-                </div>
-                <div class="form-field">
-                    <label for="password">Password</label>
-                    <input id="password" name="password" type="password" autocomplete="new-password" required>
-                    <button class="button button-secondary eye-button" type="button" onclick="togglePassword('password', this)">Show</button>
-                    <small class="field-hint">At least 8 characters, including uppercase, lowercase, and a number.</small>
-                    <small class="field-error" hidden></small>
-                </div>
-                <div class="form-field">
-                    <label for="confirm-password">Confirm password</label>
-                    <input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" required>
-                    <button class="button button-secondary eye-button" type="button" onclick="togglePassword('confirm-password', this)">Show</button>
-                    <small class="field-error" hidden></small>
-                </div>
-                <div class="form-field choice-list">
-                    <label for="terms"><input id="terms" name="terms" type="checkbox" required> I agree to the SkillBridge BD terms and conditions.</label>
-                    <small class="field-error" hidden></small>
-                </div>
-                <div class="form-actions">
-                    <button class="button" type="submit">Create account</button>
-                    <button id="fill-sample" class="button button-secondary" type="button">Fill Sample Freelancer Data</button>
-                </div>
-            </form>
-        </section>
-        <section class="panel" aria-labelledby="registered-heading">
-            <h2 id="registered-heading">Registered freelancers</h2>
-            <div class="table-wrap">
-                <table class="data-table">
-                    <thead><tr><th>Freelancer ID</th><th>Name</th><th>Professional title</th><th>Status</th></tr></thead>
-                    <tbody id="registered-list"></tbody>
-                </table>
-            </div>
-        </section>
-    </main>
-    <footer class="footer"><p>SkillBridge BD · Build your independent career</p></footer>
+
+    <div class="container">
+        <h2>Freelancer Registration</h2>
+        <form id="regForm" onsubmit="return validateRegistration()">
+            <label>Full Name:</label><br>
+            <input type="text" id="fullName"><br>
+            <span id="nameErr" style="color:red;"></span><br><br>
+
+            <label>Email:</label><br>
+            <input type="email" id="email"><br>
+            <span id="emailErr" style="color:red;"></span><br><br>
+
+            <label>Bangladesh Phone (+880):</label><br>
+            <input type="text" id="phone" placeholder="017xxxxxxxx"><br>
+            <span id="phoneErr" style="color:red;"></span><br><br>
+
+            <label>Date of Birth (18+):</label><br>
+            <input type="date" id="dob"><br>
+            <span id="dobErr" style="color:red;"></span><br><br>
+
+            <label>Password:</label><br>
+            <input type="password" id="regPass"><br>
+            <span id="passErr" style="color:red;"></span><br><br>
+
+            <label>Confirm Password:</label><br>
+            <input type="password" id="confirmPass"><br>
+            <span id="confErr" style="color:red;"></span><br><br>
+
+            <input type="checkbox" id="terms"> I agree to the terms and conditions<br>
+            <span id="termsErr" style="color:red;"></span><br><br>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script src="JS/FreelancerRegistration.js"></script>
 </body>
 </html>

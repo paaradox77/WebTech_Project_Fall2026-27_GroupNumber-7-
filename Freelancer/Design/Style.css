@@ -1,0 +1,199 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0 0 40px;
+    color: #233044;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:
+        radial-gradient(ellipse at 12% 8%, rgba(119, 213, 181, 0.22), transparent 34%),
+        linear-gradient(135deg, #f3f8f7 0%, #edf2fb 100%);
+}
+
+.topnav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.88);
+    border-bottom: 1px solid rgba(35, 48, 68, 0.08);
+    box-shadow: 0 4px 18px rgba(35, 48, 68, 0.06);
+}
+
+.topnav a {
+    display: block;
+    padding: 11px 16px;
+    border-radius: 9px;
+    color: #526174;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.topnav a:hover {
+    color: #167451;
+    background-color: #edf8f3;
+    transform: translateY(-1px);
+}
+
+.topnav a.active {
+    color: #fff;
+    background: #18845e;
+    box-shadow: 0 4px 10px rgba(24, 132, 94, 0.2);
+}
+
+.container {
+    width: calc(100% - 32px);
+    max-width: 520px;
+    margin: 46px auto 0;
+    padding: 34px 38px 38px;
+    background: #fff;
+    border: 1px solid rgba(35, 48, 68, 0.08);
+    border-top: 4px solid #24a477;
+    border-radius: 16px;
+    box-shadow: 0 18px 48px rgba(35, 48, 68, 0.11);
+}
+
+h2 {
+    margin: 0 0 28px;
+    color: #1d3046;
+    font-size: 1.65rem;
+    line-height: 1.25;
+    text-align: center;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 2px;
+    color: #34445a;
+    font-size: 0.94rem;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="url"],
+input[type="file"],
+select,
+textarea {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    color: #233044;
+    font: inherit;
+    background-color: #fbfcfe;
+    border: 1px solid #d5deea;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+input[type="file"] {
+    padding: 7px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="url"]:focus,
+input[type="file"]:focus,
+select:focus,
+textarea:focus {
+    background-color: #fff;
+    border-color: #28a879;
+    box-shadow: 0 0 0 3px rgba(40, 168, 121, 0.14);
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 0 7px 0 0;
+    accent-color: #18845e;
+    vertical-align: -3px;
+}
+
+button {
+    width: 100%;
+    min-height: 46px;
+    margin-top: 8px;
+    padding: 12px 18px;
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    background: linear-gradient(135deg, #21a574, #167a57);
+    border: 0;
+    border-radius: 9px;
+    box-shadow: 0 6px 14px rgba(24, 132, 94, 0.2);
+    cursor: pointer;
+    transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+}
+
+button:hover {
+    filter: brightness(1.04);
+    box-shadow: 0 8px 18px rgba(24, 132, 94, 0.27);
+    transform: translateY(-1px);
+}
+
+button:focus-visible,
+.topnav a:focus-visible {
+    outline: 3px solid rgba(40, 168, 121, 0.4);
+    outline-offset: 3px;
+}
+
+button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+span[id$="Err"] {
+    color: #c33b45 !important;
+    font-size: 0.84rem;
+}
+
+@media (max-width: 520px) {
+    .topnav {
+        gap: 2px;
+        padding: 10px;
+    }
+
+    .topnav a {
+        padding: 9px 10px;
+        font-size: 0.88rem;
+    }
+
+    .container {
+        margin-top: 26px;
+        padding: 27px 22px 30px;
+        border-radius: 13px;
+    }
+
+    h2 {
+        font-size: 1.45rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
