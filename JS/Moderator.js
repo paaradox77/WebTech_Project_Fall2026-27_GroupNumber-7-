@@ -585,5 +585,160 @@ function clearDispute()
     document.getElementById("DisputeMessage").innerHTML = "";
 }
 
+//Payments
+
+function showTransaction()
+{
+    let TransactionId = document.getElementById("TransactionId").value;
+    let Position = findById(payments, TransactionId);
+
+    if(Position === -1)
+    {
+        document.getElementById("PayOrderId").value = "";
+        document.getElementById("PayClient").value = "";
+        document.getElementById("PayFreelancer").value = "";
+        document.getElementById("OriginalAmount").value = "";
+        document.getElementById("PaymentStatus").value = "";
+        document.getElementById("RefundAmount").value = "";
+    }
+    else
+    {
+        document.getElementById("PayOrderId").value = payments[Position].orderId;
+        document.getElementById("PayClient").value = payments[Position].client;
+        document.getElementById("PayFreelancer").value = payments[Position].freelancer;
+        document.getElementById("OriginalAmount").value = payments[Position].amount;
+        document.getElementById("PaymentStatus").value = payments[Position].status;
+        document.getElementById("RefundAmount").value = payments[Position].refund;
+    }
+}
+
+function validateTransactionId()
+{
+    let TransactionId = document.getElementById("TransactionId").value;
+    let IdError = document.getElementById("TransactionError");
+    if(TransactionId === "")
+    {
+        IdError.innerHTML = "Please select a Transaction ID";
+        return false;
+    }
+    IdError.innerHTML = "";
+    return true;
+}
+
+function validateOriginal()
+{
+    let AmountText = document.getElementById("OriginalAmount").value.trim();
+    let AmountError = document.getElementById("OriginalError");
+    if(AmountText === "")
+    {
+        AmountError.innerHTML = "Enter The Original Amount";
+        return false;
+    }
+    if(AmountText * 1 <= 0)
+    {
+        AmountError.innerHTML = "The amount must be more than 0";
+        return false;
+    }
+    AmountError.innerHTML = "";
+    return true;
+}
+
+function validateRefund()
+{
+    let RefundText = document.getElementById("RefundAmount").value.trim();
+    let AmountText = document.getElementById("OriginalAmount").value.trim();
+    let RefundError = document.getElementById("RefundError");
+    if(RefundText === "")
+    {
+        RefundError.innerHTML = "Enter The Requested Refund";
+        return false;
+    }
+    if(RefundText * 1 < 0)
+    {
+        RefundError.innerHTML = "The refund cannot be less than 0";
+        return false;
+    }
+    if(AmountText !== "" && RefundText * 1 > AmountText * 1)
+    {
+        RefundError.innerHTML = "The refund cannot be more than the original amount";
+        return false;
+    }
+    RefundError.innerHTML = "";
+    return true;
+}
+
+function validatePaymentDecision()
+{
+    let Decision = document.getElementById("PaymentDecision").value;
+    let DecisionError = document.getElementById("PaymentDecisionError");
+    if(Decision === "")
+    {
+        DecisionError.innerHTML = "Please select a decision";
+        return false;
+    }
+    DecisionError.innerHTML = "";
+    return true;
+}
+
+function validatePaymentNotes()
+{
+    let Notes = document.getElementById("PaymentNotes").value.trim();
+    let Decision = document.getElementById("PaymentDecision").value;
+    let NotesError = document.getElementById("PaymentNotesError");
+    if(Notes === "")
+    {
+        NotesError.innerHTML = "Enter The Investigation notes";
+        return false;
+    }
+    if(Decision === "Refund Rejected" && Notes.length < 10)
+    {
+        NotesError.innerHTML = "A reason is required to reject a refund, Atleast 10 Char";
+        return false;
+    }
+    NotesError.innerHTML = "";
+    return true;
+}
+
+function collect_payment()
+{
+    let validid = validateTransactionId();
+    let validamount = validateOriginal();
+    let validrefund = validateRefund();
+    let validdecision = validatePaymentDecision();
+    let validnotes = validatePaymentNotes();
+    let Message = document.getElementById("PaymentMessage");
+
+    if(validid && validamount && validrefund && validdecision && validnotes)
+    {
+        let TransactionId = document.getElementById("TransactionId").value;
+        let Decision = document.getElementById("PaymentDecision").value;
+ let Status = "Reviewed";
+        if(Decision === "Escalate to Admin")
+        {
+            Status = "Escalated";
+        }
+        let Position = findById(payments, TransactionId);
+        document.getElementById("TransactionStatus" + Position).innerHTML = Status;
+        document.getElementById("TransactionStatus" + Position).style.color = "green";
+
+        Message.innerHTML = "Decision saved for " + TransactionId + ". No money was moved.";
+        Message.style.color = "green";
+    }
+    else
+    {
+        Message.innerHTML = "";
+    }
+    return false;
+}
+
+function clearPayment()
+{
+    document.getElementById("TransactionError").innerHTML = "";
+    document.getElementById("OriginalError").innerHTML = "";
+    document.getElementById("RefundError").innerHTML = "";
+    document.getElementById("PaymentDecisionError").innerHTML = "";
+    document.getElementById("PaymentNotesError").innerHTML = "";
+    document.getElementById("PaymentMessage").innerHTML = "";
+}
 
 
