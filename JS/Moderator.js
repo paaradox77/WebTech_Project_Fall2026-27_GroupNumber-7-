@@ -154,3 +154,136 @@ function collect_login()
     }
     return false;
 }
+
+//Registration
+function validateRegName()
+{
+    let Name = document.getElementById("RegName").value.trim();
+    let NameError = document.getElementById("RegNameError");
+    if(Name === "")
+    {
+        NameError.innerHTML = "Enter The Name";
+        return false;
+    }
+    if(Name.length < 3)
+    {
+        NameError.innerHTML = "Name Must Be atleast 3 Char";
+        return false;
+    }
+    NameError.innerHTML = "";
+    return true;
+}
+
+function validateRegEmail()
+{
+    let Email = document.getElementById("RegEmail").value.trim();
+    let EmailError = document.getElementById("RegEmailError");
+    if(Email === "")
+    {
+        EmailError.innerHTML = "Please Enter The Email";
+        return false;
+    }
+    if(!isEmail(Email))
+    {
+        EmailError.innerHTML = "Please Enter The Email Again";
+        return false;
+    }
+    if(Email.slice(Email.length - officialDomain.length) !== officialDomain)
+    {
+        EmailError.innerHTML = "Use your official email ending with " + officialDomain;
+        return false;
+    }
+    EmailError.innerHTML = "";
+    return true;
+}
+
+function validateRegId()
+{
+    let RegId = document.getElementById("RegId").value.trim();
+    let IdError = document.getElementById("RegIdError");
+    if(RegId === "")
+    {
+        IdError.innerHTML = "Enter The Moderator ID";
+        return false;
+    }
+    if(!isModeratorId(RegId))
+    {
+        IdError.innerHTML = "Moderator ID must look like MOD-1234";
+        return false;
+    }
+    IdError.innerHTML = "";
+    return true;
+}
+
+function validateRegPassword()
+{
+    let Password = document.getElementById("RegPassword").value;
+    let PasswordError = document.getElementById("RegPasswordError");
+    if(Password === "")
+    {
+        PasswordError.innerHTML = "Enter The Password";
+        return false;
+    }
+    if(Password.length < 6)
+    {
+        PasswordError.innerHTML = "Password Must Be atleast 6 Char";
+        return false;
+    }
+    PasswordError.innerHTML = "";
+    return true;
+}
+
+function validateRegConfirm()
+{
+    let Password = document.getElementById("RegPassword").value;
+    let Confirm = document.getElementById("RegConfirm").value;
+    let ConfirmError = document.getElementById("RegConfirmError");
+    if(Confirm === "")
+    {
+        ConfirmError.innerHTML = "Enter the Password again";
+        return false;
+    }
+    if(Confirm !== Password)
+    {
+        ConfirmError.innerHTML = "The two passwords do not match";
+        return false;
+    }
+    ConfirmError.innerHTML = "";
+    return true;
+}
+
+function collect_registration()
+{
+    let validname = validateRegName();
+    let validemail = validateRegEmail();
+    let validid = validateRegId();
+    let validpassword = validateRegPassword();
+    let validconfirm = validateRegConfirm();
+
+    if(validname && validemail && validid && validpassword && validconfirm)
+    {
+        let RegId = document.getElementById("RegId").value.trim();
+        let Password = document.getElementById("RegPassword").value;
+
+         if(findById(moderators, RegId) !== -1)
+        {
+            document.getElementById("RegIdError").innerHTML = "This Moderator ID is already registered";
+            return false;
+        }
+
+         moderators.push({ id: RegId, password: Password });
+          document.getElementById("RegName").value = "";
+        document.getElementById("RegEmail").value = "";
+        document.getElementById("RegId").value = "";
+        document.getElementById("RegPassword").value = "";
+        document.getElementById("RegConfirm").value = "";
+         document.getElementById("LoginId").value = RegId;
+        document.getElementById("LoginPassword").value = "";
+        let Message = document.getElementById("LoginMessage");
+        Message.innerHTML = "Registration saved. Log in with " + RegId;
+        Message.style.color = "green";
+        showPage("Login");
+    }
+    return false;
+}
+
