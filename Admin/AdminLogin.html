@@ -28,6 +28,33 @@
 
         <form onsubmit="return validateAdminLogin()" onreset="clearAllErrors()" novalidate>
 
+            <fieldset>
+                <legend> Sign IN </legend>
+                <table>
+                    <tr>
+                        <td>
+                            <label for="AdminID">Admin ID:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="AdminID" placeholder="e.g. ADM-1234">
+                            <p class="error" id="AdminIDError"></p>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="Password" id="Password" placeholder="Enter password">
+                            </td>
+                            <td>
+                                    <label class="choice">
+                                        <input type="checkbox" onclick="togglePassword('password', this)">
+                                        Show Password
+                                    </label>
+                                    
+                            </td>
+                        </tr>
+                        </tr>
+                </table>
+
     </body>
 
     </html>
