@@ -40,19 +40,26 @@
                             <p class="error" id="AdminIDError"></p>
                         </td>
                         </tr>
+                        
                         <tr>
-                            <td>
-                                <label for="Password" id="Password" placeholder="Enter password">
-                            </td>
-                            <td>
-                                    <label class="choice">
-                                        <input type="checkbox" onclick="togglePassword('password', this)">
-                                        Show Password
-                                    </label>
-                                    
-                            </td>
-                        </tr>
-                        </tr>
+                        <td><label for="Password">Password:</label></td>
+                        <td><input type="password" id="Password" placeholder="Enter password">
+                            <label class="choice"><input type="checkbox" onclick="togglePassword('Password', this)"> Show password</label>
+                            <p class="error" id="PasswordError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="Captcha">Security Check:</label></td>
+                        <td><p id="CaptchaQuestion"></p>
+                            <input type="number" id="Captcha" placeholder="Your answer">
+                            <button type="button" class="small-btn" onclick="makeCaptcha()">New question</button>
+                            <p class="error" id="CaptchaError"></p></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td><label class="choice"><input type="checkbox" id="Remember"> Remember me on this computer</label></td>
+                    </tr>
+                            
                 </table>
 
     </body>
