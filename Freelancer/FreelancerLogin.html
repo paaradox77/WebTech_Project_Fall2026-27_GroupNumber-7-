@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sign in to your SkillBridge BD freelancer account.">
+    <title>Freelancer Login | SkillBridge BD</title>
+    <link rel="stylesheet" href="../Design/Style.css">
+    <script src="../JS/Common.js" defer></script>
+    <script src="JS/FreelancerLogin.js" defer></script>
+</head>
+<body class="theme-freelancer">
+    <header class="page-heading">
+        <h1>SkillBridge BD</h1>
+        <p>Sign in and connect your skills with opportunities across Bangladesh.</p>
+    </header>
+    <nav class="topnav" aria-label="Freelancer navigation">
+        <a href="FreelancerLogin.html" class="active" aria-current="page">1. Login</a>
+        <a href="FreelancerRegistration.html">2. Register</a>
+        <a href="CreateService.html">3. Create Service / Gig</a>
+        <a href="BrowseProjects.html">4. Browse Projects</a>
+        <a href="SubmitProposal.html">5. Submit Proposal</a>
+        <a href="../index.html">Switch Role</a>
+    </nav>
+
+    <main class="page-shell">
+        <div class="content-grid">
+            <section class="form-panel" aria-labelledby="login-title">
+                <h2 id="login-title">Freelancer login</h2>
+                <div id="result" class="result-box" role="status" hidden></div>
+                <form id="login-form" novalidate>
+                    <div class="form-field">
+                        <label for="identifier">Email address or Freelancer ID</label>
+                        <input id="identifier" name="identifier" type="text" autocomplete="username" placeholder="rahim@example.com or FRE-1001" required>
+                        <small class="field-error" hidden></small>
+                    </div>
+                    <div class="form-field">
+                        <label for="password">Password</label>
+                        <input id="password" name="password" type="password" autocomplete="current-password" required>
+                        <button class="button button-secondary eye-button" type="button" onclick="togglePassword('password', this)">Show</button>
+                        <small class="field-error" hidden></small>
+                    </div>
+                    <div class="form-field choice-list">
+                        <label for="remember"><input id="remember" name="remember" type="checkbox"> Remember my email / ID</label>
+                    </div>
+                    <p id="lockout-message" class="field-hint" aria-live="polite"></p>
+                    <div class="form-actions">
+                        <button id="login-submit" class="button" type="submit">Login</button>
+                        <button id="demo-login" class="button button-secondary" type="button">Fill Valid Demo Login</button>
+                        <button id="failed-login" class="button button-secondary" type="button">Test Failed Attempt</button>
+                    </div>
+                </form>
+            </section>
+
+            <aside class="panel" aria-labelledby="demo-accounts-title">
+                <h2 id="demo-accounts-title">Registered demo freelancers</h2>
+                <p class="muted">Use an account to fill the login form. Demo password: <strong>Abcdef12</strong> (Rahim) or <strong>Design12A</strong> (Nusrat).</p>
+                <div id="freelancer-list" class="data-grid" aria-live="polite"></div>
+            </aside>
+        </div>
+    </main>
+    <footer class="footer"><p>SkillBridge BD · Freelancers across Bangladesh</p></footer>
+</body>
+</html>
