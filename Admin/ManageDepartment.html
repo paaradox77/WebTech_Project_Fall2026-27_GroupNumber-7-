@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Manage Department</title>
+        <link rel="stylesheet" href="../Design/Style.css">
+        <script src="../JS/Common.js"></script>
+        <script src="JS/ManageDepartment.js"></script>
+    </head>
+
+    <body class="admin">
+        <img src="../Images/logo.png" id="logo" alt="AIUB Logo">
+
+        <div class="header">
+            <h1>Add / Update Department</h1>
+        </div>
+
+        <div class="topnav">
+            <a href="../index.html">Home</a>
+            <a href="AdminLogin.html">Login</a>
+            <a href="AdminRegistration.html">Registration</a>
+            <a href="AddStaff.html">Add Staff</a>
+            <a href="ManageDepartment.html" class="active">Departments</a>
+            <a href="GenerateReport.html">Reports</a>
+        </div>
+
+        <form onsubmit="return validateDepartmentForm()" onreset="resetDepartmentForm()" novalidate>
+
+            <fieldset>
+                <legend>Department Information</legend>
+                <table>
+                    <tr>
+                        <td><label for="DeptCode">Department Code:</label></td>
+                        <td><input type="text" id="DeptCode" placeholder="e.g. CAR-01">
+                            <p class="error" id="DeptCodeError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="DeptName">Department Name:</label></td>
+                        <td><input type="text" id="DeptName" placeholder="e.g. Cardiology">
+                            <p class="error" id="DeptNameError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="HeadName">Head of Department:</label></td>
+                        <td><input type="text" id="HeadName" placeholder="Doctor's full name">
+                            <p class="error" id="HeadError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="Floor">Floor No:</label></td>
+                        <td><input type="number" id="Floor" placeholder="0 - 15 (0 = ground floor)">
+                            <p class="error" id="FloorError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="Beds">Total Beds:</label></td>
+                        <td><input type="number" id="Beds" placeholder="0 - 300">
+                            <p class="error" id="BedsError"></p></td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>Services</legend>
+                <table>
+                    <tr>
+                        <td><label>24/7 Emergency:</label></td>
+                        <td>
+                            <label class="choice"><input type="radio" name="emergency" value="Yes"> Yes</label>
+                            <label class="choice"><input type="radio" name="emergency" value="No"> No</label>
+                            <p class="error" id="EmergencyError"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Facilities:</label></td>
+                        <td>
+                            <label class="choice"><input type="checkbox" name="facility" value="OPD"> OPD</label>
+                            <label class="choice"><input type="checkbox" name="facility" value="IPD"> IPD</label>
+                            <label class="choice"><input type="checkbox" name="facility" value="ICU"> ICU</label>
+                            <label class="choice"><input type="checkbox" name="facility" value="Lab"> Lab</label>
+                            <label class="choice"><input type="checkbox" name="facility" value="Operation Theatre"> Operation Theatre</label>
+                            <p class="hint">A department with ICU or IPD needs at least 5 beds</p>
+                            <p class="error" id="FacilityError"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="Description">Description:</label></td>
+                        <td><textarea id="Description" placeholder="Short description of the department"
+                                      oninput="showCharCount('Description', 'DescCount', 200)"></textarea>
+                            <p class="hint" id="DescCount">0 / 200 characters</p>
+                            <p class="error" id="DescriptionError"></p></td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <p id="ResultText"></p>
+
+            <input type="submit" id="submit" value="Save Department">
+            <input type="reset" id="reset" value="Reset">
+        </form>
+
+        <div class="footer">
+            <h5>Created By Jihad</h5>
+        </div>
+    </body>
+</html>
