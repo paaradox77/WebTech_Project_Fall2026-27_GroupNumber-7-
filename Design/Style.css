@@ -299,3 +299,193 @@ hint a
         padding-bottom: 0;
     }
 }
+
+/* CLIENT REGISTRATION: scoped styles (added for Phase 1) */
+body.client .client-container {
+    max-width: 680px;
+    margin: 0 auto;
+}
+body.client .client-container h2 { color: var(--theme); margin-bottom: 6px; }
+body.client .client-intro, body.client .client-footnote { color: #555; line-height: 1.5; }
+body.client .client-container form { max-width: 100%; }
+body.client .client-container fieldset { padding: 20px; }
+body.client .form-field { margin-bottom: 16px; }
+body.client .form-field label { display: block; font-weight: bold; margin-bottom: 7px; }
+body.client .form-field input {
+    max-width: none;
+    padding: 11px 12px;
+    font-size: 15px;
+}
+body.client .form-field .hint { display: block; margin-top: 6px; }
+body.client .form-field .field-error { display: block; color: #b42318; font-size: 13px; margin-top: 6px; }
+body.client .form-field .field-error[hidden] { display: none; }
+body.client .form-field .input-invalid { border: 2px solid #c62828; }
+body.client .form-field .input-valid { border: 2px solid #2e7d32; }
+body.client .client-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+body.client .client-actions button {
+    padding: 11px 19px;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+}
+body.client .client-primary-btn { background: var(--theme); border: 1px solid var(--theme); color: white; }
+body.client .client-secondary-btn { background: #fff; border: 1px solid #aaa; color: #333; }
+body.client .result-box.success {
+    padding: 12px;
+    margin-top: 16px;
+    border: 1px solid #2e7d32;
+    border-radius: 5px;
+    background: #e8f5e9;
+    color: #215d25;
+}
+body.client .client-footnote a { color: var(--theme); }
+body.client .toast {
+    position: fixed; bottom: 20px; right: 20px;
+    padding: 12px 18px; border-radius: 6px;
+    color: white; background: #2e7d32;
+    box-shadow: 0 2px 12px #0003;
+    display: none; z-index: 50;
+}
+body.client .toast.toast-error { background: #b42318; }
+body.client .toast.is-visible { display: block; }
+@media (max-width: 600px) {
+    body.client .client-container fieldset { padding: 14px; }
+    body.client .client-actions button { width: 100%; }
+}
+
+/* CLIENT LOGIN (Phase 2): added without altering other role styles */
+body.client .client-demo-note {
+    background: #f1eafa;
+    border-left: 4px solid var(--theme);
+    padding: 12px 16px;
+    border-radius: 4px;
+    line-height: 1.6;
+    margin: 18px 0;
+}
+body.client .client-demo-note code {
+    background: white;
+    border: 1px solid #d9c8e9;
+    border-radius: 3px;
+    padding: 2px 6px;
+}
+body.client .client-attempt-message { color: #a12626; min-height: 1em; font-size: 14px; }
+body.client .client-primary-btn:disabled { opacity: .55; cursor: not-allowed; }
+body.client .client-session-panel {
+    background: white;
+    border: 1px solid #d5bee8;
+    border-radius: 7px;
+    padding: 18px;
+    margin-top: 22px;
+}
+body.client .client-session-panel h3 { color: var(--theme); margin-top: 0; }
+body.client .client-link-button {
+    padding: 11px 19px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    background: var(--theme);
+    color: white;
+}
+body.client .client-session-panel[hidden] { display: none; }
+
+/* CLIENT POST PROJECT (Phase 3): scoped styles; other role themes are unchanged */
+body.client .form-field select,
+body.client .form-field textarea,
+body.client .form-field input[type="date"],
+body.client .form-field input[type="number"],
+body.client .form-field input[type="file"] {
+    display: block;
+    width: 100%;
+    max-width: none;
+    padding: 11px 12px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+body.client .form-field textarea { min-height: 150px; height: auto; }
+body.client .form-field select.input-valid,
+body.client .form-field textarea.input-valid { border: 2px solid #2e7d32; }
+body.client .form-field select.input-invalid,
+body.client .form-field textarea.input-invalid { border: 2px solid #c62828; }
+body.client .client-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+body.client .client-two-col .form-field { min-width: 0; }
+body.client .client-counter { display: block; font-size: 12px; margin-top: 5px; color: #555; }
+body.client .client-counter.char-count-met { color: #28763b; }
+body.client .client-counter.char-count-over { color: #b42318; }
+body.client .client-help { font-size: 13px; font-weight: normal; color: #555; }
+body.client .client-skills { display: flex; gap: 6px 18px; flex-wrap: wrap; padding: 12px; background: #faf8fd; border: 1px solid #d7c5e5; border-radius: 5px; }
+body.client .client-skills.client-group-invalid { border: 2px solid #c62828; }
+body.client .client-skills .choice { white-space: nowrap; margin: 2px 0; }
+body.client .client-skills + .field-error { display: block; color: #b42318; margin-top: 6px; font-size: 13px; }
+body.client .client-skills + .field-error[hidden] { display: none; }
+body.client .client-signed-in { background: #eee6f7; padding: 10px 14px; border-radius: 5px; color: #4e287b; }
+body.client .client-project-list { margin: 28px 0; }
+body.client .client-project-list h3 { color: var(--theme); }
+body.client .client-project-card { background: white; border: 1px solid #d6c3e8; border-radius: 7px; padding: 14px 18px; margin: 12px 0; }
+body.client .client-project-card h4 { color: #572d8c; margin: 0 0 7px; }
+body.client .client-project-card p { margin: 0; line-height: 1.6; color: #475467; }
+@media (max-width: 600px) {
+    body.client .client-two-col { grid-template-columns: 1fr; gap: 0; }
+    body.client .client-skills .choice { white-space: normal; }
+}
+
+/* CLIENT HIRE FREELANCER (Phase 4): scoped to Client pages only */
+body.client .client-selection-info,
+body.client .client-proposal-info {
+    background: #f6f1fb;
+    color: #472b6b;
+    padding: 12px 14px;
+    border-left: 3px solid var(--theme);
+    border-radius: 4px;
+    margin: 0 0 16px;
+    line-height: 1.5;
+    font-size: 14px;
+}
+body.client .client-proposal-info { background: #f0f5fb; border-left-color: #5375ac; }
+body.client .client-selection-info[hidden],
+body.client .client-proposal-info[hidden],
+body.client .client-demo-note[hidden],
+body.client .client-signed-in[hidden] { display: none; }
+body.client .form-field .client-agreement-label {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-weight: normal; cursor: pointer; line-height: 1.5;
+}
+body.client .client-agreement-label input[type="checkbox"] {
+    width: auto; flex: 0 0 auto; margin: 4px 0 0;
+}
+body.client .client-agreement-label input[type="checkbox"].input-invalid {
+    outline: 2px solid #c62828; outline-offset: 2px;
+}
+
+/* CLIENT MAKE PAYMENT (Phase 5): payment-only additions */
+body.client .client-payment-extra {
+    background: #fbf8fe;
+    border: 1px solid #dfd0ee;
+    border-radius: 6px;
+    margin: 10px 0 16px;
+    padding: 14px 16px 0;
+}
+body.client .client-payment-extra[hidden] { display: none; }
+body.client .client-card-warning {
+    color: #714b20;
+    background: #fff6e8;
+    padding: 10px 12px;
+    border-left: 3px solid #c77a1c;
+    margin: 0 0 14px;
+    line-height: 1.5;
+}
+body.client .form-field input[type="month"],
+body.client .form-field input[type="tel"],
+body.client .form-field input[type="password"] {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+    padding: 11px 12px;
+    font-size: 15px;
+}
+body.client .form-field input[type="month"].input-valid,
+body.client .form-field input[type="tel"].input-valid,
+body.client .form-field input[type="password"].input-valid { border: 2px solid #2e7d32; }
+body.client .form-field input[type="month"].input-invalid,
+body.client .form-field input[type="tel"].input-invalid,
+body.client .form-field input[type="password"].input-invalid { border: 2px solid #c62828; }
+body.client .client-payment-extra .form-field { margin-bottom: 16px; }

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Registration | SkillBridge BD</title>
+    <link rel="stylesheet" href="../Design/Style.css">
+    <script src="../JS/Common.js" defer></script>
+    <script src="JS/ClientRegistration.js" defer></script>
+</head>
+<body class="client">
+    <header class="header">
+        <h1>SkillBridge BD</h1>
+        <p>Client Portal — Create an account to hire talented freelancers.</p>
+    </header>
+
+    <nav class="topnav" aria-label="Client navigation">
+        <a href="../index.html">Home</a>
+        <a href="ClientLogin.html">Login</a>
+        <a href="ClientRegistration.html" class="active" aria-current="page">Registration</a>
+        <a href="PostProject.html">Post Project</a>
+        <a href="HireFreelancer.html">Hire Freelancer</a>
+        <a href="MakePayment.html">Make Payment</a>
+    </nav>
+
+    <main class="client-container">
+        <h2>Create Your Client Account</h2>
+        <p class="client-intro">Fields marked <span aria-hidden="true">*</span> are required. This is a classroom demonstration; do not enter a real password.</p>
+
+        <form id="registrationForm" novalidate>
+            <fieldset>
+                <legend>Client Information</legend>
+
+                <div class="form-field">
+                    <label for="fullName">Full Name <span aria-hidden="true">*</span></label>
+                    <input type="text" id="fullName" name="fullName" autocomplete="name"  required aria-describedby="fullNameError">
+                    <small class="field-error" id="fullNameError" hidden></small>
+                </div>
+
+                <div class="form-field">
+                    <label for="email">Email Address <span aria-hidden="true">*</span></label>
+                    <input type="email" id="email" name="email" autocomplete="email"required aria-describedby="emailError">
+                    <small class="field-error" id="emailError" hidden></small>
+                </div>
+
+                <div class="form-field">
+                    <label for="phone">Bangladesh Mobile Number <span aria-hidden="true">*</span></label>
+                    <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" required aria-describedby="phoneHelp phoneError">
+                    <small class="hint" id="phoneHelp">Use 01XXXXXXXXX or +8801XXXXXXXXX.</small>
+                    <small class="field-error" id="phoneError" hidden></small>
+                </div>
+
+                <div class="form-field">
+                    <label for="companyName">Company Name (Optional)</label>
+                    <input type="text" id="companyName" name="companyName" autocomplete="organization" aria-describedby="companyNameError">
+                    <small class="field-error" id="companyNameError" hidden></small>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Account Information</legend>
+                <div class="form-field">
+                    <label for="password">Demo Password <span aria-hidden="true">*</span></label>
+                    <input type="password" id="password" name="password" autocomplete="new-password" placeholder="At least 8 characters" required aria-describedby="passwordHelp passwordError">
+                    <small class="hint" id="passwordHelp">At least 8 characters, including uppercase, lowercase and a number.</small>
+                    <small class="field-error" id="passwordError" hidden></small>
+                </div>
+
+                <div class="form-field">
+                    <label for="confirmPassword">Confirm Demo Password <span aria-hidden="true">*</span></label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" autocomplete="new-password" placeholder="Enter the same password again" required aria-describedby="confirmPasswordError">
+                    <small class="field-error" id="confirmPasswordError" hidden></small>
+                </div>
+                <label class="choice"><input type="checkbox" id="showPasswords"> Show passwords</label>
+            </fieldset>
+
+            <div class="client-actions">
+                <button type="submit" class="client-primary-btn">Create Account</button>
+                <button type="reset" class="client-secondary-btn">Clear Form</button>
+            </div>
+            <p id="registrationResult" class="result-box" role="status" aria-live="polite" hidden></p>
+        </form>
+        <p class="client-footnote">Already have a demo account? <a href="ClientLogin.html">Go to Client Login</a></p>
+    </main>
+
+    <footer class="footer">SkillBridge BD · Web Technologies Project · Client Module</footer>
+</body>
+</html>

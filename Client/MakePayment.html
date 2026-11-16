@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Payment | SkillBridge BD</title>
+    <link rel="stylesheet" href="../Design/Style.css">
+    <script src="../JS/Common.js" defer></script>
+    <script src="JS/MakePayment.js" defer></script>
+</head>
+<body class="client">
+    <header class="header">
+        <h1>SkillBridge BD</h1>
+        <p>Client Portal — Simulate a payment for a hired freelancer.</p>
+    </header>
+    <nav class="topnav" aria-label="Client navigation">
+        <a href="../index.html">Home</a>
+        <a href="ClientLogin.html">Login</a>
+        <a href="ClientRegistration.html">Registration</a>
+        <a href="PostProject.html">Post Project</a>
+        <a href="HireFreelancer.html">Hire Freelancer</a>
+        <a href="MakePayment.html" class="active" aria-current="page">Make Payment</a>
+    </nav>
+    <main class="client-container">
+        <h2>Make a Demo Payment</h2>
+        <p class="client-intro">Use this form to simulate paying for a hiring order. Fields marked * are required. <strong>No real payment is made.</strong></p>
+        <div class="client-demo-note" id="paymentLoginNotice" role="status" hidden>
+            Please <a href="ClientLogin.html">sign in as a Client</a> before making a demo payment.
+        </div>
+        <p class="client-signed-in" id="paymentSignedIn" hidden></p>
+        <div class="client-demo-note" id="paymentOrderNotice" hidden>
+            There are no unpaid hiring orders. <a href="HireFreelancer.html">Hire a freelancer first.</a>
+        </div>
+        <form id="paymentForm" novalidate>
+            <fieldset>
+                <legend>Order and Payment Amount</legend>
+                <div class="form-field">
+                    <label for="paymentOrder">Unpaid Hiring Order *</label>
+                    <select id="paymentOrder" name="orderId" required aria-describedby="paymentOrderError">
+                        <option value="">Select an unpaid order</option>
+                    </select>
+                    <small id="paymentOrderError" class="field-error" hidden></small>
+                </div>
+                <div id="paymentOrderDetails" class="client-selection-info" aria-live="polite" hidden></div>
+                <div class="form-field">
+                    <label for="paymentAmount">Amount (BDT) *</label>
+                    <input type="number" id="paymentAmount" name="amount" min="1" step="1" placeholder="Select an order first" required aria-describedby="paymentAmountError paymentAmountHelp">
+                    <small id="paymentAmountHelp" class="hint">Enter the exact amount agreed in your hiring order.</small>
+                    <small id="paymentAmountError" class="field-error" hidden></small>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Payment Method</legend>
+                <div class="form-field">
+                    <label for="paymentMethod">Choose a Method *</label>
+                    <select id="paymentMethod" name="method" required aria-describedby="paymentMethodError">
+                        <option value="">Select a payment method</option>
+                        <option value="bKash">bKash</option>
+                        <option value="Nagad">Nagad</option>
+                        <option value="Rocket">Rocket</option>
+                    </select>
+                    <small id="paymentMethodError" class="field-error" hidden></small>
+                </div>
+                <section id="mobilePaymentFields" class="client-payment-extra" aria-label="Mobile banking details" hidden>
+                    <div class="form-field">
+                        <label for="mobilePaymentNumber">Mobile Banking Number *</label>
+                        <input type="tel" id="mobilePaymentNumber" name="mobileNumber" placeholder="e.g. 01712345678" autocomplete="off" aria-describedby="mobilePaymentNumberError">
+                        <small id="mobilePaymentNumberError" class="field-error" hidden></small>
+                    </div>
+                </section>
+               
+            </fieldset>
+            <div class="form-field">
+                <label for="paymentConfirm" class="client-agreement-label">
+                    <input type="checkbox" id="paymentConfirm" name="confirmation" required>
+                    I understand that this payment is simulated and no money will be transferred. *
+                </label>
+                <small id="paymentConfirmError" class="field-error" hidden></small>
+            </div>
+            <div class="client-actions">
+                <button type="submit" id="submitPayment" class="client-primary-btn">Confirm Demo Payment</button>
+                <button type="reset" class="client-secondary-btn">Clear Form</button>
+            </div>
+            <p class="result-box" id="paymentResult" role="status" aria-live="polite" hidden></p>
+        </form>
+        <section class="client-project-list" aria-labelledby="paymentHistoryHeading">
+            <h3 id="paymentHistoryHeading">My Demo Payment History</h3>
+            <div id="paymentHistory" aria-live="polite"></div>
+        </section>
+        <p class="client-footnote">Academic simulation only. Do not use this page for real financial transactions.</p>
+    </main>
+    <footer class="footer">SkillBridge BD · Web Technologies Project · Client Module</footer>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Login | SkillBridge BD</title>
+    <link rel="stylesheet" href="../Design/Style.css">
+    <script src="../JS/Common.js" defer></script>
+    <script src="JS/ClientLogin.js" defer></script>
+</head>
+<body class="client">
+    <header class="header">
+        <h1>SkillBridge BD</h1>
+        <p>Client Portal — Sign in to manage your freelance projects.</p>
+    </header>
+
+    <nav class="topnav" aria-label="Client navigation">
+        <a href="../index.html">Home</a>
+        <a href="ClientLogin.html" class="active" aria-current="page">Login</a>
+        <a href="ClientRegistration.html">Registration</a>
+        <a href="PostProject.html">Post Project</a>
+        <a href="HireFreelancer.html">Hire Freelancer</a>
+        <a href="MakePayment.html">Make Payment</a>
+    </nav>
+
+    <main class="client-container">
+        <h2>Client Login</h2>
+        <div class="client-demo-note" role="note">
+            <strong>Classroom demo:</strong> Every registered Client uses the demonstration login code
+            <code>ClientDemo12</code>. This is <strong>not</strong> your registration password and is not real authentication.
+        </div>
+
+        <form id="loginForm" novalidate>
+            <fieldset>
+                <legend>Client Account</legend>
+                <div class="form-field">
+                    <label for="identifier">Email or Bangladesh Mobile Number <span aria-hidden="true">*</span></label>
+                    <input type="text" id="identifier" name="identifier" autocomplete="username" required aria-describedby="identifierError">
+                    <small class="field-error" id="identifierError" hidden></small>
+                </div>
+                <div class="form-field">
+                    <label for="loginCode">Demo Login Code <span aria-hidden="true">*</span></label>
+                    <input type="password" id="loginCode" name="loginCode" autocomplete="off" required aria-describedby="loginCodeError">
+                    <small class="field-error" id="loginCodeError" hidden></small>
+                </div>
+                <label class="choice"><input type="checkbox" id="showLoginCode"> Show login code</label>
+                <br>
+                <label class="choice"><input type="checkbox" id="rememberMe"> Remember me on this browser (demo only)</label>
+            </fieldset>
+            <div class="client-actions">
+                <button type="submit" id="loginButton" class="client-primary-btn">Login</button>
+                <button type="reset" class="client-secondary-btn">Clear Form</button>
+            </div>
+            <p id="attemptMessage" class="client-attempt-message" role="status" aria-live="polite"></p>
+            <p id="loginResult" class="result-box" role="status" aria-live="polite" hidden></p>
+        </form>
+
+        <section id="sessionPanel" class="client-session-panel" aria-label="Current demo session" hidden>
+            <h3>Signed-in Client</h3>
+            <p id="welcomeMessage"></p>
+            <div class="client-actions">
+                <a class="client-link-button" href="PostProject.html">Post a Project</a>
+                <button type="button" id="logoutButton" class="client-secondary-btn">Log Out</button>
+            </div>
+        </section>
+        <p class="client-footnote">New to SkillBridge BD? <a href="ClientRegistration.html">Create a Client account</a>.</p>
+    </main>
+
+    <footer class="footer">SkillBridge BD · Web Technologies Project · Client Module</footer>
+</body>
+</html>

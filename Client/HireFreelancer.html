@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hire Freelancer | SkillBridge BD</title>
+    <link rel="stylesheet" href="../Design/Style.css">
+    <script src="../JS/Common.js" defer></script>
+    <script src="JS/HireFreelancer.js" defer></script>
+</head>
+<body class="client">
+    <header class="header">
+        <h1>SkillBridge BD</h1>
+        <p>Client Portal — Hire a freelancer for your published project.</p>
+    </header>
+
+    <nav class="topnav" aria-label="Client navigation">
+        <a href="../index.html">Home</a>
+        <a href="ClientLogin.html">Login</a>
+        <a href="ClientRegistration.html">Registration</a>
+        <a href="PostProject.html">Post Project</a>
+        <a href="HireFreelancer.html" class="active" aria-current="page">Hire Freelancer</a>
+        <a href="MakePayment.html">Make Payment</a>
+    </nav>
+
+    <main class="client-container">
+        <h2>Hire a Freelancer</h2>
+        <p class="client-intro">Select one of your open projects and a freelancer, then agree on a price and delivery date. Fields marked * are required.</p>
+        <div class="client-demo-note" id="hireLoginNotice" role="status" hidden>
+            Please <a href="ClientLogin.html">sign in as a Client</a> before hiring a freelancer.
+        </div>
+        <p class="client-signed-in" id="hireSignedIn" role="status" hidden></p>
+        <div class="client-demo-note" id="hireProjectNotice" hidden>
+            You need an open project before hiring. <a href="PostProject.html">Post a project first.</a>
+        </div>
+
+        <form id="hireForm" novalidate>
+            <fieldset>
+                <legend>Choose a Project and Freelancer</legend>
+                <div class="form-field">
+                    <label for="hireProject">My Open Project *</label>
+                    <select id="hireProject" name="projectId" required aria-describedby="hireProjectError">
+                        <option value="">Select your project</option>
+                    </select>
+                    <small class="field-error" id="hireProjectError" hidden></small>
+                </div>
+                <div id="selectedProjectInfo" class="client-selection-info" aria-live="polite" hidden></div>
+
+                <div class="form-field">
+                    <label for="hireFreelancer">Freelancer *</label>
+                    <select id="hireFreelancer" name="freelancerId" required aria-describedby="hireFreelancerError">
+                        <option value="">Select a freelancer</option>
+                    </select>
+                    <small class="field-error" id="hireFreelancerError" hidden></small>
+                </div>
+                <div id="selectedFreelancerInfo" class="client-selection-info" aria-live="polite" hidden></div>
+                <div id="relatedProposalInfo" class="client-proposal-info" aria-live="polite" hidden></div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Hiring Agreement</legend>
+                <div class="client-two-col">
+                    <div class="form-field">
+                        <label for="agreedPrice">Agreed Price (BDT) *</label>
+                        <input type="number" id="agreedPrice" name="agreedPrice" min="1" step="1" placeholder="e.g. 9500" required aria-describedby="agreedPriceError">
+                        <small class="field-error" id="agreedPriceError" hidden></small>
+                    </div>
+                    <div class="form-field">
+                        <label for="deliveryDeadline">Delivery Deadline *</label>
+                        <input type="date" id="deliveryDeadline" name="deliveryDeadline" required aria-describedby="deliveryDeadlineError">
+                        <small class="field-error" id="deliveryDeadlineError" hidden></small>
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label class="client-agreement-label" for="hireAgreement">
+                        <input type="checkbox" id="hireAgreement" name="agreement" required>
+                        I agree to hire the selected freelancer at the agreed price and deadline. *
+                    </label>
+                    <small class="field-error" id="hireAgreementError" hidden></small>
+                </div>
+            </fieldset>
+
+            <div class="client-actions">
+                <button type="submit" id="confirmHireButton" class="client-primary-btn">Confirm Hiring</button>
+                <button type="reset" class="client-secondary-btn">Clear Form</button>
+            </div>
+            <p id="hireResult" class="result-box" role="status" aria-live="polite" hidden></p>
+        </form>
+
+        <section class="client-project-list" aria-labelledby="hiresHeading">
+            <h3 id="hiresHeading">My Hired Freelancers</h3>
+            <div id="myHiresList" aria-live="polite"></div>
+        </section>
+    </main>
+    <footer class="footer">SkillBridge BD · Web Technologies Project · Client Module</footer>
+</body>
+</html>

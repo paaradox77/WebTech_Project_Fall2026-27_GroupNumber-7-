@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Project | SkillBridge BD</title>
+    <link rel="stylesheet" href="../Design/Style.css">
+    <script src="../JS/Common.js" defer></script>
+    <script src="JS/PostProject.js" defer></script>
+</head>
+<body class="client">
+    <header class="header">
+        <h1>SkillBridge BD</h1>
+        <p>Client Portal — Describe your project and find the right freelancer.</p>
+    </header>
+
+    <nav class="topnav" aria-label="Client navigation">
+        <a href="../index.html">Home</a>
+        <a href="ClientLogin.html">Login</a>
+        <a href="ClientRegistration.html">Registration</a>
+        <a href="PostProject.html" class="active" aria-current="page">Post Project</a>
+        <a href="HireFreelancer.html">Hire Freelancer</a>
+        <a href="MakePayment.html">Make Payment</a>
+    </nav>
+
+    <main class="client-container">
+        <h2>Post a New Project</h2>
+        <p class="client-intro">Fill in the project details below. Fields marked * are required. Data is saved only in this browser for the classroom demonstration.</p>
+        <div id="loginNotice" class="client-demo-note" role="status" hidden>
+            To publish a project, first <a href="ClientLogin.html">sign in as a registered Client</a> with the classroom demo code.
+        </div>
+        <p id="signedInAs" class="client-signed-in" role="status" hidden></p>
+
+        <form id="postProjectForm" novalidate>
+            <fieldset>
+                <legend>Project Details</legend>
+                <div class="form-field">
+                    <label for="projectTitle">Project Title *</label>
+                    <input type="text" id="projectTitle" name="projectTitle" placeholder="e.g. Create a responsive photography portfolio" maxlength="100" required aria-describedby="titleCount projectTitleError">
+                    <small class="client-counter" id="titleCount">0 / 100 characters (minimum 10)</small>
+                    <small class="field-error" id="projectTitleError" hidden></small>
+                </div>
+                <div class="form-field">
+                    <label for="category">Project Category *</label>
+                    <select id="category" name="category" required aria-describedby="categoryError">
+                        <option value="">Choose a category</option>
+                        <option value="Web Development">Web Development</option>
+                        <option value="UI/UX Design">UI/UX Design</option>
+                        <option value="Graphic Design">Graphic Design</option>
+                        <option value="Digital Marketing">Digital Marketing</option>
+                        <option value="Mobile App Dev">Mobile App Dev</option>
+                        <option value="Video & Animation">Video & Animation</option>
+                        <option value="Writing & Translation">Writing & Translation</option>
+                        <option value="Photography">Photography</option>
+                    </select>
+                    <small class="field-error" id="categoryError" hidden></small>
+                </div>
+                <div class="form-field">
+                    <label for="description">Project Description *</label>
+                    <textarea id="description" name="description" rows="7" minlength="100" placeholder="Explain the work, expected deliverables and any important details (at least 100 characters)." required aria-describedby="descriptionCount descriptionError"></textarea>
+                    <small class="client-counter" id="descriptionCount">0 characters (minimum 100)</small>
+                    <small class="field-error" id="descriptionError" hidden></small>
+                </div>
+                <div class="form-field">
+                    <label>Required Skills * <span class="client-help">(select at least one)</span></label>
+                    <div id="skillsGroup" class="client-skills" role="group" aria-describedby="skillsError">
+                        <label class="choice"><input type="checkbox" name="skills" value="HTML/CSS"> HTML/CSS</label>
+                        <label class="choice"><input type="checkbox" name="skills" value="JavaScript"> JavaScript</label>
+                        <label class="choice"><input type="checkbox" name="skills" value="Figma"> Figma</label>
+                        <label class="choice"><input type="checkbox" name="skills" value="UI/UX Design"> UI/UX Design</label>
+                        <label class="choice"><input type="checkbox" name="skills" value="Photoshop"> Photoshop</label>
+                        <label class="choice"><input type="checkbox" name="skills" value="React"> React</label>
+                        <label class="choice"><input type="checkbox" name="skills" value="Node.js"> Node.js</label>
+                        <label class="choice"><input type="checkbox" name="skills" value="SEO"> SEO</label>
+                        <label class="choice"><input type="checkbox" name="skills" value="Video & Animation"> Video & Animation</label>
+                        <label class="choice"><input type="checkbox" name="skills" value="Photography"> Photography</label>
+                        <label class="choice"><input type="checkbox" name="skills" value="Content Writing"> Content Writing</label>
+                    </div>
+                    <small class="field-error" id="skillsError" hidden></small>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Budget and Delivery</legend>
+                <div class="client-two-col">
+                    <div class="form-field">
+                        <label for="minBudget">Minimum Budget (BDT) *</label>
+                        <input type="number" id="minBudget" name="minBudget" min="1" step="1" placeholder="e.g. 5000" required aria-describedby="minBudgetError">
+                        <small class="field-error" id="minBudgetError" hidden></small>
+                    </div>
+                    <div class="form-field">
+                        <label for="maxBudget">Maximum Budget (BDT) *</label>
+                        <input type="number" id="maxBudget" name="maxBudget" min="1" step="1" placeholder="e.g. 15000" required aria-describedby="maxBudgetError">
+                        <small class="field-error" id="maxBudgetError" hidden></small>
+                    </div>
+                </div>
+                <div class="client-two-col">
+                    <div class="form-field">
+                        <label for="deadline">Project Deadline *</label>
+                        <input type="date" id="deadline" name="deadline" required aria-describedby="deadlineError">
+                        <small class="field-error" id="deadlineError" hidden></small>
+                    </div>
+                    <div class="form-field">
+                        <label for="experienceLevel">Experience Level *</label>
+                        <select id="experienceLevel" name="experienceLevel" required aria-describedby="experienceLevelError">
+                            <option value="">Choose experience level</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Expert">Expert</option>
+                        </select>
+                        <small class="field-error" id="experienceLevelError" hidden></small>
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label for="attachment">Project Attachment (Optional)</label>
+                    <input type="file" id="attachment" name="attachment" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" aria-describedby="attachmentHelp attachmentError">
+                    <small class="hint" id="attachmentHelp">PDF, DOC, DOCX, JPG or PNG, up to 5 MB. Only the filename is saved in the demo; the file is not uploaded.</small>
+                    <small class="field-error" id="attachmentError" hidden></small>
+                </div>
+            </fieldset>
+
+            <div class="client-actions">
+                <button type="submit" class="client-primary-btn" id="publishButton">Publish Project</button>
+                <button type="reset" class="client-secondary-btn">Clear Form</button>
+            </div>
+            <p id="projectResult" class="result-box" role="status" aria-live="polite" hidden></p>
+        </form>
+
+        <section class="client-project-list" aria-labelledby="myProjectsHeading">
+            <h3 id="myProjectsHeading">My Published Projects</h3>
+            <p class="hint">Projects you publish in this browser will appear here.</p>
+            <div id="myProjectsList" aria-live="polite"></div>
+        </section>
+    </main>
+    <footer class="footer">SkillBridge BD · Web Technologies Project · Client Module</footer>
+</body>
+</html>
