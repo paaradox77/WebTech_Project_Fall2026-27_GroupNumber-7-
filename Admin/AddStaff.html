@@ -3,17 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Add Staff</title>
+        <title>Add Platform Staff | SkillBridge BD</title>
         <link rel="stylesheet" href="../Design/Style.css">
+        <link rel="stylesheet" href="Admin.css">
         <script src="../JS/Common.js"></script>
+        <script src="JS/AdminValidation.js"></script>
         <script src="JS/AddStaff.js"></script>
     </head>
 
     <body class="admin">
-        <img src="../Images/logo.png" id="logo" alt="Logo">
+        <img src="../Images/logo.png" id="logo" alt="SkillBridge BD logo">
 
         <div class="header">
-            <h1>Add New Staff</h1>
+            <h1>Add Platform Staff</h1>
         </div>
 
         <div class="topnav">
@@ -21,33 +23,33 @@
             <a href="AdminLogin.html">Login</a>
             <a href="AdminRegistration.html">Registration</a>
             <a href="AddStaff.html" class="active">Add Staff</a>
-            <a href="ManageDepartment.html">Departments</a>
+            <a href="ManageDepartment.html">Categories</a>
             <a href="GenerateReport.html">Reports</a>
         </div>
 
-        <form onsubmit="return validateAddStaffForm()" onreset="clearAllErrors()" novalidate>
+        <form onsubmit="return validateAddStaffForm()" onreset="adminClearFormErrors()" novalidate>
 
             <fieldset>
-                <legend>Staff Details</legend>
+                <legend>Platform Team Member</legend>
                 <table>
                     <tr>
-                        <td><label>Staff Type:</label></td>
+                        <td><label>Team Role:</label></td>
                         <td>
-                            <label class="choice"><input type="radio" name="stafftype" value="Doctor"> Doctor</label>
-                            <label class="choice"><input type="radio" name="stafftype" value="Nurse"> Nurse</label>
-                            <label class="choice"><input type="radio" name="stafftype" value="Receptionist"> Receptionist</label>
-                            <label class="choice"><input type="radio" name="stafftype" value="Lab Technician"> Lab Technician</label>
+                            <label class="choice"><input type="radio" name="stafftype" value="Platform Support Specialist"> Platform Support Specialist</label>
+                            <label class="choice"><input type="radio" name="stafftype" value="Trust &amp; Safety Moderator"> Trust &amp; Safety Moderator</label>
+                            <label class="choice"><input type="radio" name="stafftype" value="Operations Coordinator"> Operations Coordinator</label>
+                            <label class="choice"><input type="radio" name="stafftype" value="Finance Assistant"> Finance Assistant</label>
                             <p class="error" id="StaffTypeError"></p>
                         </td>
                     </tr>
                     <tr>
                         <td><label for="StaffName">Full Name:</label></td>
-                        <td><input type="text" id="StaffName" placeholder="Enter full name">
+                        <td><input type="text" id="StaffName" placeholder="e.g. Ayesha Rahman">
                             <p class="error" id="NameError"></p></td>
                     </tr>
                     <tr>
                         <td><label for="StaffEmail">Email:</label></td>
-                        <td><input type="email" id="StaffEmail" placeholder="Enter email">
+                        <td><input type="email" id="StaffEmail" placeholder="e.g. ayesha@skillbridge.bd">
                             <p class="error" id="EmailError"></p></td>
                     </tr>
                     <tr>
@@ -59,21 +61,19 @@
             </fieldset>
 
             <fieldset>
-                <legend>Job Details</legend>
+                <legend>Employment Details</legend>
                 <table>
                     <tr>
-                        <td><label for="Department">Department:</label></td>
+                        <td><label for="Department">Platform Team:</label></td>
                         <td>
                             <select id="Department">
-                                <option value="">-- Select Department --</option>
-                                <option value="Medicine">Medicine</option>
-                                <option value="Cardiology">Cardiology</option>
-                                <option value="Neurology">Neurology</option>
-                                <option value="Orthopedics">Orthopedics</option>
-                                <option value="Pathology Lab">Pathology Lab</option>
-                                <option value="Front Desk">Front Desk</option>
+                                <option value="">-- Select Team --</option>
+                                <option value="Client Support">Client Support</option>
+                                <option value="Trust &amp; Safety">Trust &amp; Safety</option>
+                                <option value="Platform Operations">Platform Operations</option>
+                                <option value="Finance">Finance</option>
                             </select>
-                            <p class="hint">Receptionists work at the Front Desk; lab technicians work in the Pathology Lab</p>
+                            <p class="hint">Choose the team that matches the selected platform role.</p>
                             <p class="error" id="DepartmentError"></p>
                         </td>
                     </tr>
@@ -90,14 +90,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="JoiningDate">Joining Date:</label></td>
+                        <td><label for="JoiningDate">Start Date:</label></td>
                         <td><input type="date" id="JoiningDate">
-                            <p class="hint">Within the last 10 years, or up to 30 days from today</p>
+                            <p class="hint">Choose a date within the past 10 years or the next 30 days.</p>
                             <p class="error" id="JoiningError"></p></td>
                     </tr>
                     <tr>
                         <td><label for="Salary">Monthly Salary (BDT):</label></td>
-                        <td><input type="number" id="Salary" placeholder="10000 - 500000">
+                        <td><input type="number" id="Salary" placeholder="e.g. 30000">
                             <p class="error" id="SalaryError"></p></td>
                     </tr>
                 </table>

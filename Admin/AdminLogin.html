@@ -3,18 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin Login</title>
+        <title>Admin Login | SkillBridge BD</title>
         <link rel="stylesheet" href="../Design/Style.css">
-        <script src="..JS/Common.js"></script>
-        <script src="JS/AdminLogin.js"></script>
+        <link rel="stylesheet" href="Admin.css">
+        <script src="../JS/Common.js" defer></script>
+        <script src="JS/AdminLogin.js" defer></script>
 
     </head>
 
     <body class="admin" onload="makeCaptcha()">
-        <img src="../Images/logo.png" id="logo" alt="Logo">
+        <img src="../Images/logo.png" id="logo" alt="SkillBridge BD logo">
 
         <div class="header">
-            <h1>Admin Login</h1>
+            <h1>SkillBridge Admin Login</h1>
         </div>
 
         <div class="topnav">
@@ -22,35 +23,35 @@
              <a href="AdminLogin.html" class="active">Login</a>
              <a href="AdminRegistration.html">Registration</a>
             <a href="AddStaff.html">Add Staff</a>
-            <a href="ManageDepartment.html">Department</a>
-            <a href="GenerateReport.html">Repots</a>
+             <a href="ManageDepartment.html">Categories</a>
+            <a href="GenerateReport.html">Reports</a>
         </div>
 
-        <form onsubmit="return validateAdminLogin()" onreset="clearAllErrors()" novalidate>
+        <form id="adminLoginForm" onsubmit="return validateAdminLogin()" onreset="clearLoginErrors()" novalidate>
 
             <fieldset>
-                <legend> Sign IN </legend>
+                <legend>SkillBridge Admin Sign In</legend>
                 <table>
                     <tr>
                         <td>
                             <label for="AdminID">Admin ID:</label>
                         </td>
                         <td>
-                            <input type="text" id="AdminID" placeholder="e.g. ADM-1234">
+                            <input type="text" id="AdminID" placeholder="e.g. ADM-1234" autocomplete="username">
                             <p class="error" id="AdminIDError"></p>
                         </td>
                         </tr>
                         
                         <tr>
                         <td><label for="Password">Password:</label></td>
-                        <td><input type="password" id="Password" placeholder="Enter password">
+                        <td><input type="password" id="Password" placeholder="Enter password" autocomplete="current-password">
                             <label class="choice"><input type="checkbox" onclick="togglePassword('Password', this)"> Show password</label>
                             <p class="error" id="PasswordError"></p></td>
                     </tr>
                     <tr>
                         <td><label for="Captcha">Security Check:</label></td>
                         <td><p id="CaptchaQuestion"></p>
-                            <input type="number" id="Captcha" placeholder="Your answer">
+                            <input type="number" id="Captcha" placeholder="Your answer" min="2" max="18" step="1">
                             <button type="button" class="small-btn" onclick="makeCaptcha()">New question</button>
                             <p class="error" id="CaptchaError"></p></td>
                     </tr>
@@ -61,6 +62,11 @@
                     </tr>
                             
                 </table>
+                <p id="ResultText" role="status" aria-live="polite"></p>
+                <input type="submit" id="submit" value="Login">
+                <input type="reset" id="reset" value="Clear">
+            </fieldset>
+        </form>
 
     </body>
 

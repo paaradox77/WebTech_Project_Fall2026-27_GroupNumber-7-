@@ -1,9 +1,6 @@
-console.log("AddStaff.js Connected");
-
-
 function validateStaffDepartment()
 {
-    if (!validateSelect("Department", "DepartmentError", "Department"))
+    if (!adminValidateSelect("Department", "DepartmentError", "Department"))
     {
         return false;
     }
@@ -11,29 +8,33 @@ function validateStaffDepartment()
     let staffType = getRadioValue("stafftype");
     let department = document.getElementById("Department").value;
 
-    if (staffType === "Receptionist" && department !== "Front Desk")
+    if (staffType === "Platform Support Specialist" && department !== "Client Support")
     {
-        showError("DepartmentError", "A receptionist must be placed at the Front Desk");
+        adminSetError(document.getElementById("Department"), "DepartmentError", "A Platform Support Specialist must be assigned to Client Support.");
         return false;
     }
-    if (staffType === "Lab Technician" && department !== "Pathology Lab")
+    if (staffType === "Trust & Safety Moderator" && department !== "Trust & Safety")
     {
-        showError("DepartmentError", "A lab technician must be placed in the Pathology Lab");
+        adminSetError(document.getElementById("Department"), "DepartmentError", "A Trust & Safety Moderator must be assigned to Trust & Safety.");
         return false;
     }
-    if ((staffType === "Doctor" || staffType === "Nurse") &&
-        (department === "Front Desk" || department === "Pathology Lab"))
+    if (staffType === "Operations Coordinator" && department !== "Platform Operations")
     {
-        showError("DepartmentError", "A " + staffType.toLowerCase() + " must be placed in a clinical department");
+        adminSetError(document.getElementById("Department"), "DepartmentError", "An Operations Coordinator must be assigned to Platform Operations.");
         return false;
     }
+    if (staffType === "Finance Assistant" && department !== "Finance")
+    {
+        adminSetError(document.getElementById("Department"), "DepartmentError", "A Finance Assistant must be assigned to Finance.");
+        return false;
+    }
+    adminClearError(document.getElementById("Department"), "DepartmentError");
     return true;
 }
 
-// Page-only rule: part-time staff salary cannot be more than 100000
 function validateStaffSalary()
 {
-    if (!validateNumber("Salary", "SalaryError", "Salary", 10000, 500000))
+    if (!adminValidateNumber("Salary", "SalaryError", "Salary", 10000, 500000, true))
     {
         return false;
     }
@@ -43,22 +44,22 @@ function validateStaffSalary()
 
     if (type === "Part-time" && salary > 100000)
     {
-        showError("SalaryError", "Part-time salary cannot be more than 100000 BDT");
+        adminSetError(document.getElementById("Salary"), "SalaryError", "Part-time monthly compensation cannot exceed 100000 BDT.");
         return false;
     }
+    adminClearError(document.getElementById("Salary"), "SalaryError");
     return true;
 }
 
-// Called by <form onsubmit="return validateAddStaffForm()">
 function validateAddStaffForm()
 {
-    let validType       = validateRadio("stafftype", "StaffTypeError", "Staff type");
-    let validName       = validateName("StaffName", "NameError");
-    let validEmail      = validateEmail("StaffEmail", "EmailError");
-    let validPhone      = validatePhone("StaffPhone", "PhoneError");
+    let validType       = adminValidateRadio("stafftype", "StaffTypeError", "Staff type");
+    let validName       = adminValidateName("StaffName", "NameError", "Full name");
+    let validEmail      = adminValidateEmail("StaffEmail", "EmailError");
+    let validPhone      = adminValidatePhone("StaffPhone", "PhoneError");
     let validDepartment = validateStaffDepartment();
-    let validEmployment = validateSelect("EmploymentType", "EmploymentError", "Employment type");
-    let validJoining    = validateDateWindow("JoiningDate", "JoiningError", "Joining date", -3650, 30);
+    let validEmployment = adminValidateSelect("EmploymentType", "EmploymentError", "Employment type");
+    let validJoining    = adminValidateDateWindow("JoiningDate", "JoiningError", "Joining date", -3650, 30);
     let validSalary     = validateStaffSalary();
 
     let isValid = validType && validName && validEmail && validPhone && validDepartment &&
@@ -66,14 +67,14 @@ function validateAddStaffForm()
 
     if (isValid)
     {
-        let name = safeText(document.getElementById("StaffName").value.trim());
+        let name = document.getElementById("StaffName").value.trim();
         let staffType = getRadioValue("stafftype");
-        showResult(true, staffType + " " + name + " can be added to the staff list!");
+        adminShowResult(true, staffType + " " + name + " passed validation and can be added to the staff list.");
     }
     else
     {
-        showResult(false);
+        adminShowResult(false, "Please correct the highlighted fields.");
     }
 
-    return false; //Server not available
+    return false;
 }

@@ -3,17 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Manage Department</title>
+        <title>Manage Service Categories | SkillBridge BD</title>
         <link rel="stylesheet" href="../Design/Style.css">
+        <link rel="stylesheet" href="Admin.css">
         <script src="../JS/Common.js"></script>
+        <script src="JS/AdminValidation.js"></script>
         <script src="JS/ManageDepartment.js"></script>
     </head>
 
     <body class="admin">
-        <img src="../Images/logo.png" id="logo" alt="AIUB Logo">
+        <img src="../Images/logo.png" id="logo" alt="SkillBridge BD logo">
 
         <div class="header">
-            <h1>Add / Update Department</h1>
+            <h1>Add / Update Service Category</h1>
         </div>
 
         <div class="topnav">
@@ -21,70 +23,71 @@
             <a href="AdminLogin.html">Login</a>
             <a href="AdminRegistration.html">Registration</a>
             <a href="AddStaff.html">Add Staff</a>
-            <a href="ManageDepartment.html" class="active">Departments</a>
+            <a href="ManageDepartment.html" class="active">Categories</a>
             <a href="GenerateReport.html">Reports</a>
         </div>
 
-        <form onsubmit="return validateDepartmentForm()" onreset="resetDepartmentForm()" novalidate>
+        <form onsubmit="return validateCategoryForm()" onreset="resetCategoryForm()" novalidate>
 
             <fieldset>
-                <legend>Department Information</legend>
+                <legend>Category Information</legend>
                 <table>
                     <tr>
-                        <td><label for="DeptCode">Department Code:</label></td>
-                        <td><input type="text" id="DeptCode" placeholder="e.g. CAR-01">
+                        <td><label for="DeptCode">Category Code:</label></td>
+                        <td><input type="text" id="DeptCode" placeholder="e.g. WEB-01">
                             <p class="error" id="DeptCodeError"></p></td>
                     </tr>
                     <tr>
-                        <td><label for="DeptName">Department Name:</label></td>
-                        <td><input type="text" id="DeptName" placeholder="e.g. Cardiology">
+                        <td><label for="DeptName">Category Name:</label></td>
+                        <td><input type="text" id="DeptName" placeholder="e.g. Web Development">
                             <p class="error" id="DeptNameError"></p></td>
                     </tr>
                     <tr>
-                        <td><label for="HeadName">Head of Department:</label></td>
-                        <td><input type="text" id="HeadName" placeholder="Doctor's full name">
+                        <td><label for="HeadName">Category Lead:</label></td>
+                        <td><input type="text" id="HeadName" placeholder="e.g. Ayesha Rahman">
                             <p class="error" id="HeadError"></p></td>
                     </tr>
                     <tr>
-                        <td><label for="Floor">Floor No:</label></td>
-                        <td><input type="number" id="Floor" placeholder="0 - 15 (0 = ground floor)">
+                        <td><label for="Floor">Typical Minimum Budget (BDT):</label></td>
+                        <td><input type="number" id="Floor" placeholder="e.g. 5000">
                             <p class="error" id="FloorError"></p></td>
                     </tr>
                     <tr>
-                        <td><label for="Beds">Total Beds:</label></td>
-                        <td><input type="number" id="Beds" placeholder="0 - 300">
+                        <td><label for="Beds">Typical Maximum Budget (BDT):</label></td>
+                        <td><input type="number" id="Beds" placeholder="e.g. 25000">
                             <p class="error" id="BedsError"></p></td>
                     </tr>
                 </table>
             </fieldset>
 
             <fieldset>
-                <legend>Services</legend>
+                <legend>Category Settings</legend>
                 <table>
                     <tr>
-                        <td><label>24/7 Emergency:</label></td>
+                        <td><label>Category Status:</label></td>
                         <td>
-                            <label class="choice"><input type="radio" name="emergency" value="Yes"> Yes</label>
-                            <label class="choice"><input type="radio" name="emergency" value="No"> No</label>
+                            <label class="choice"><input type="radio" name="emergency" value="Open"> Open</label>
+                            <label class="choice"><input type="radio" name="emergency" value="Paused"> Paused</label>
                             <p class="error" id="EmergencyError"></p>
                         </td>
                     </tr>
                     <tr>
-                        <td><label>Facilities:</label></td>
+                        <td><label>Related Skills:</label></td>
                         <td>
-                            <label class="choice"><input type="checkbox" name="facility" value="OPD"> OPD</label>
-                            <label class="choice"><input type="checkbox" name="facility" value="IPD"> IPD</label>
-                            <label class="choice"><input type="checkbox" name="facility" value="ICU"> ICU</label>
-                            <label class="choice"><input type="checkbox" name="facility" value="Lab"> Lab</label>
-                            <label class="choice"><input type="checkbox" name="facility" value="Operation Theatre"> Operation Theatre</label>
-                            <p class="hint">A department with ICU or IPD needs at least 5 beds</p>
+                            <label class="choice"><input type="checkbox" name="facility" value="Web Development"> Web Development</label>
+                            <label class="choice"><input type="checkbox" name="facility" value="UI/UX Design"> UI/UX Design</label>
+                            <label class="choice"><input type="checkbox" name="facility" value="Graphic Design"> Graphic Design</label>
+                            <label class="choice"><input type="checkbox" name="facility" value="Digital Marketing"> Digital Marketing</label>
+                            <label class="choice"><input type="checkbox" name="facility" value="Mobile App Development"> Mobile App Development</label>
+                            <label class="choice"><input type="checkbox" name="facility" value="Writing &amp; Translation"> Writing &amp; Translation</label>
+                            <p class="hint">Choose skills that clients can use to find freelancers in this category.</p>
                             <p class="error" id="FacilityError"></p>
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="Description">Description:</label></td>
-                        <td><textarea id="Description" placeholder="Short description of the department"
-                                      oninput="showCharCount('Description', 'DescCount', 200)"></textarea>
+                        <td><label for="Description">Category Description:</label></td>
+                        <td><textarea id="Description" placeholder="Describe the services and skills covered by this category."
+                                      oninput="showCharCount(this, '#DescCount', 0, 200)"></textarea>
                             <p class="hint" id="DescCount">0 / 200 characters</p>
                             <p class="error" id="DescriptionError"></p></td>
                     </tr>
@@ -93,7 +96,7 @@
 
             <p id="ResultText"></p>
 
-            <input type="submit" id="submit" value="Save Department">
+            <input type="submit" id="submit" value="Save Category">
             <input type="reset" id="reset" value="Reset">
         </form>
 

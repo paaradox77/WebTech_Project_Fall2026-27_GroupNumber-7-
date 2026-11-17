@@ -3,18 +3,20 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin Registration</title>
+        <title>Admin Registration | SkillBridge BD</title>
         <link rel="stylesheet" href="../Design/Style.css">
+        <link rel="stylesheet" href="Admin.css">
         <script src="../JS/Common.js"></script>
+        <script src="JS/AdminValidation.js"></script>
         <script src="JS/AdminRegistration.js"></script>
     </head>
 
     <body class="admin">
 
-        <img src="../Images/logo.png" id="logo" alt="Logo">
+        <img src="../Images/logo.png" id="logo" alt="SkillBridge BD logo">
 
         <div class="header">
-            <h1>Admin Registration Form</h1>
+            <h1>SkillBridge Admin Registration</h1>
         </div>
 
 
@@ -23,18 +25,18 @@
             <a href="AdminLogin.html">Login</a>
             <a href="AdminRegistration.html" class="active">Registration</a>
             <a href="AddStaff.html">Add Staff</a>
-            <a href="ManageDepartment.html">Departments</a>
+            <a href="ManageDepartment.html">Categories</a>
             <a href="GenerateReport.html">Reports</a>
         </div>
 
-        <form onsubmit="return validateAdminForm()" onreset="clearAllErrors()" novalidate>
+        <form onsubmit="return validateAdminForm()" onreset="adminClearFormErrors()" novalidate>
 
             <fieldset>
                 <legend>Admin Information</legend>
                 <table>
                     <tr>
                         <td><label for="AdminName">Full Name:</label></td>
-                        <td><input type="text" id="AdminName" placeholder="Enter full name">
+                        <td><input type="text" id="AdminName" placeholder="e.g. Ayesha Rahman">
                             <p class="error" id="NameError"></p></td>
                     </tr>
                     <tr>
@@ -44,7 +46,7 @@
                     </tr>
                     <tr>
                         <td><label for="AdminEmail">Email:</label></td>
-                        <td><input type="email" id="AdminEmail" placeholder="Enter email">
+                        <td><input type="email" id="AdminEmail" placeholder="e.g. admin@skillbridge.bd">
                             <p class="error" id="EmailError"></p></td>
                     </tr>
                     <tr>
@@ -66,9 +68,9 @@
                         <td>
                             <select id="AdminRole">
                                 <option value="">-- Select Role --</option>
-                                <option value="Super Admin">Super Admin</option>
-                                <option value="System Admin">System Admin</option>
-                                <option value="HR Admin">HR Admin</option>
+                                <option value="Platform Admin">Platform Admin</option>
+                                <option value="Operations Admin">Operations Admin</option>
+                                <option value="Trust and Safety Admin">Trust and Safety Admin</option>
                             </select>
                             <p class="error" id="RoleError"></p>
                         </td>
@@ -82,9 +84,11 @@
                     <tr>
                         <td><label>Can Manage:</label></td>
                         <td>
-                            <label class="choice"><input type="checkbox" name="permission" value="Doctors"> Doctors</label>
-                            <label class="choice"><input type="checkbox" name="permission" value="Nurses"> Nurses</label>
-                            <label class="choice"><input type="checkbox" name="permission" value="Patients"> Patients</label>
+                            <label class="choice"><input type="checkbox" name="permission" value="Freelancers"> Freelancers</label>
+                            <label class="choice"><input type="checkbox" name="permission" value="Clients"> Clients</label>
+                            <label class="choice"><input type="checkbox" name="permission" value="Projects"> Projects</label>
+                            <label class="choice"><input type="checkbox" name="permission" value="Payments"> Payments</label>
+                            <label class="choice"><input type="checkbox" name="permission" value="Disputes"> Disputes</label>
                             <label class="choice"><input type="checkbox" name="permission" value="Reports"> Reports</label>
                             <p class="error" id="PermissionError"></p>
                         </td>
@@ -97,13 +101,13 @@
                 <table>
                     <tr>
                         <td><label for="UserName">Username:</label></td>
-                        <td><input type="text" id="UserName" placeholder="4 - 15 characters">
+                        <td><input type="text" id="UserName" placeholder="e.g. ayesha_admin">
                             <p class="error" id="UserNameError"></p></td>
                     </tr>
                     <tr>
                         <td><label for="Password">Password:</label></td>
                         <td><input type="password" id="Password" placeholder="Enter password">
-                            <p class="hint">At least 8 characters with an uppercase letter, a lowercase letter and a number</p>
+                            <p class="hint">Use at least 8 characters with an uppercase letter, a lowercase letter, and a number.</p>
                             <p class="error" id="PasswordError"></p></td>
                     </tr>
                     <tr>
@@ -123,8 +127,6 @@
 
         <div class="footer">
             <h5>Created By Jihad</h5>
-
-
+        </div>
     </body>
-
     </html>

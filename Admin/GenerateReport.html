@@ -3,14 +3,16 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Generate Report</title>
+        <title>Generate Reports | SkillBridge BD</title>
         <link rel="stylesheet" href="../Design/Style.css">
+        <link rel="stylesheet" href="Admin.css">
         <script src="../JS/Common.js"></script>
+        <script src="JS/AdminValidation.js"></script>
         <script src="JS/GenerateReport.js"></script>
     </head>
 
     <body class="admin">
-        <img src="../Images/logo.png" id="logo" alt="AIUB Logo">
+        <img src="../Images/logo.png" id="logo" alt="SkillBridge BD logo">
 
         <div class="header">
             <h1>Generate Report</h1>
@@ -21,11 +23,11 @@
             <a href="AdminLogin.html">Login</a>
             <a href="AdminRegistration.html">Registration</a>
             <a href="AddStaff.html">Add Staff</a>
-            <a href="ManageDepartment.html">Departments</a>
+            <a href="ManageDepartment.html">Categories</a>
             <a href="GenerateReport.html" class="active">Reports</a>
         </div>
 
-        <form onsubmit="return validateReportForm()" onreset="clearAllErrors()" novalidate>
+        <form onsubmit="return validateReportForm()" onreset="adminClearFormErrors()" novalidate>
 
             <fieldset>
                 <legend>Report Settings</legend>
@@ -35,11 +37,11 @@
                         <td>
                             <select id="ReportType">
                                 <option value="">-- Select Report --</option>
-                                <option value="Patient Admission">Patient Admission</option>
-                                <option value="Billing">Billing</option>
-                                <option value="Staff Attendance">Staff Attendance</option>
-                                <option value="Appointments">Appointments</option>
-                                <option value="Medicine Stock">Medicine Stock</option>
+                                <option value="Project Activity">Project Activity</option>
+                                <option value="Platform Revenue">Platform Revenue</option>
+                                <option value="Freelancer Performance">Freelancer Performance</option>
+                                <option value="Client Engagement">Client Engagement</option>
+                                <option value="Dispute Resolution">Dispute Resolution</option>
                             </select>
                             <p class="error" id="ReportTypeError"></p>
                         </td>
@@ -84,7 +86,7 @@
                     </tr>
                     <tr>
                         <td><label for="SendTo">Send Report To:</label></td>
-                        <td><input type="email" id="SendTo" placeholder="Enter email">
+                        <td><input type="email" id="SendTo" placeholder="e.g. reports@skillbridge.bd">
                             <p class="error" id="SendToError"></p></td>
                     </tr>
                 </table>

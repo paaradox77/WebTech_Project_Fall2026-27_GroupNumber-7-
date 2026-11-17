@@ -1,87 +1,76 @@
-console.log("ManageDepartment.js Connected");
-
-// Department name: letters and spaces only, 3 - 30 characters
 function validateDeptName()
 {
-    let name = document.getElementById("DeptName").value.trim();
-
-    if (name === "")
+    let input = document.getElementById("DeptName");
+    let name = input.value.trim();
+    if (!validateRequired(name))
     {
-        showError("DeptNameError", "Please enter the department name");
+        adminSetError(input, "DeptNameError", "Please enter the category name.");
         return false;
     }
-    if (!/^[A-Za-z ]{3,30}$/.test(name))
+    if (!/^[A-Za-z0-9 &\/.-]{3,40}$/.test(name))
     {
-        showError("DeptNameError", "Use 3 - 30 letters and spaces only");
+        adminSetError(input, "DeptNameError", "Use 3 to 40 letters, numbers, spaces, or basic punctuation.");
         return false;
     }
-    clearError("DeptNameError");
+    adminClearError(input, "DeptNameError");
     return true;
 }
 
-// Page-only rule: if ICU or IPD (in-patient) is ticked, the department needs at least 5 beds
-function validateFacilities()
+function validateCategorySkills()
 {
-    if (!validateCheckbox("facility", "FacilityError", "facility", 1))
+    if (!adminValidateCheckbox("facility", "FacilityError", "related skill", 1))
     {
-        return false;
-    }
-
-    let boxes = document.querySelectorAll('input[name="facility"]');
-    let needsBeds = false;
-
-    for (let i = 0; i < boxes.length; i++)
-    {
-        if (boxes[i].checked && (boxes[i].value === "ICU" || boxes[i].value === "IPD"))
-        {
-            needsBeds = true;
-        }
-    }
-
-    let bedsText = document.getElementById("Beds").value.trim();
-    let beds = Number(bedsText);
-    if (needsBeds && bedsText !== "" && beds < 5)     // empty beds box already shows its own error
-    {
-        showError("FacilityError", "ICU / IPD needs at least 5 beds (now " + beds + ")");
         return false;
     }
     return true;
 }
 
-// Called by <form onsubmit="return validateDepartmentForm()">
-function validateDepartmentForm()
+function validateBudgetRange()
 {
-    let validCode        = validatePattern("DeptCode", "DeptCodeError", "Department code", /^[A-Z]{3}-[0-9]{2}$/, "CAR-01");
+    let minimum = Number(document.getElementById("Floor").value);
+    let maximumInput = document.getElementById("Beds");
+    let maximum = Number(maximumInput.value);
+    if (maximum < minimum)
+    {
+        adminSetError(maximumInput, "BedsError", "Maximum budget must be equal to or greater than the minimum budget.");
+        return false;
+    }
+    return true;
+}
+
+function validateCategoryForm()
+{
+    let validCode        = adminValidatePattern("DeptCode", "DeptCodeError", "Category code", /^[A-Z]{3}-\d{2}$/i, "WEB-01");
     let validName        = validateDeptName();
-    let validHead        = validateName("HeadName", "HeadError");
-    let validFloor       = validateNumber("Floor", "FloorError", "Floor no", 0, 15);
-    let validBeds        = validateNumber("Beds", "BedsError", "Total beds", 0, 300);
-    let validEmergency   = validateRadio("emergency", "EmergencyError", "Emergency option");
-    let validFacilities  = validateFacilities();
-    let validDescription = validateTextLength("Description", "DescriptionError", "Description", 20, 200);
+    let validHead        = adminValidateName("HeadName", "HeadError", "Category lead");
+    let validMinimum     = adminValidateNumber("Floor", "FloorError", "Minimum typical budget", 500, 500000, true);
+    let validMaximum     = adminValidateNumber("Beds", "BedsError", "Maximum typical budget", 500, 5000000, true);
+    let validBudget      = validMinimum && validMaximum && validateBudgetRange();
+    let validStatus      = adminValidateRadio("emergency", "EmergencyError", "Category status");
+    let validSkills      = validateCategorySkills();
+    let validDescription = adminValidateTextLength("Description", "DescriptionError", "Category description", 20, 200);
 
-    let isValid = validCode && validName && validHead && validFloor && validBeds &&
-                  validEmergency && validFacilities && validDescription;
+    let isValid = validCode && validName && validHead && validMinimum && validMaximum &&
+                  validBudget && validStatus && validSkills && validDescription;
 
     if (isValid)
     {
-        let name = safeText(document.getElementById("DeptName").value.trim());
+        let name = document.getElementById("DeptName").value.trim();
         let code = document.getElementById("DeptCode").value.trim().toUpperCase();
-        showResult(true, "Department " + name + " (" + code + ") passed all validation checks!");
+        adminShowResult(true, "Service category " + name + " (" + code + ") passed all validation checks.");
     }
     else
     {
-        showResult(false);
+        adminShowResult(false, "Please correct the highlighted fields.");
     }
 
-    return false;   // validation-only project: no server yet
+    return false;
 }
 
-// Called by onreset: clear errors and set the character counter back to 0
-function resetDepartmentForm()
+function resetCategoryForm()
 {
-    clearAllErrors();
+    adminClearFormErrors();
     let counter = document.getElementById("DescCount");
-    counter.innerHTML = "0 / 200 characters";
-    counter.style.color = "";
+    counter.textContent = "0 / 200 characters";
+    counter.classList.remove("char-count-met", "char-count-over");
 }

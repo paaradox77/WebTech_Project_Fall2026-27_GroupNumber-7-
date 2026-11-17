@@ -1,9 +1,7 @@
-console.log("GenerateReport.js Connected");
-
-
 function validateFormat()
 {
-    if (!validateRadio("format", "FormatError", "File format"))
+    let inputs = Array.from(document.querySelectorAll('input[type="radio"][name="format"]'));
+    if (!adminValidateRadio("format", "FormatError", "File format"))
     {
         return false;
     }
@@ -13,31 +11,27 @@ function validateFormat()
 
     if (format === "CSV" && chartsBox.checked)
     {
-        showError("FormatError", "CSV cannot include charts. Choose PDF / Excel or untick Charts");
+        adminSetError(inputs, "FormatError", "CSV cannot include charts. Choose PDF or Excel, or untick Charts.");
         return false;
     }
+    inputs.forEach(function (input) { adminClearError(input, "FormatError"); });
     return true;
 }
 
-// Called by <form onsubmit="return validateReportForm()">
 function validateReportForm()
 {
-    let validType = validateSelect("ReportType", "ReportTypeError", "Report type");
-
-    // Both dates: within the last 5 years (1825 days) and not in the future
-    let validFrom = validateDateWindow("FromDate", "FromError", "From date", -1825, 0);
-    let validTo   = validateDateWindow("ToDate", "ToError", "To date", -1825, 0);
-
-    // Compare the two dates only when both are valid on their own
+    let validType = adminValidateSelect("ReportType", "ReportTypeError", "Report type");
+    let validFrom = adminValidateDateWindow("FromDate", "FromError", "From date", -1825, 0);
+    let validTo   = adminValidateDateWindow("ToDate", "ToError", "To date", -1825, 0);
     let validRange = false;
     if (validFrom && validTo)
     {
-        validRange = validateDateRange("FromDate", "ToDate", "ToError", 366);
+        validRange = adminValidateDateRange("FromDate", "ToDate", "ToError", 366);
     }
 
-    let validSections = validateCheckbox("section", "SectionError", "section", 2);
+    let validSections = adminValidateCheckbox("section", "SectionError", "section", 2);
     let validFormat   = validateFormat();
-    let validEmail    = validateEmail("SendTo", "SendToError");
+    let validEmail    = adminValidateEmail("SendTo", "SendToError");
 
     let isValid = validType && validFrom && validTo && validRange &&
                   validSections && validFormat && validEmail;
@@ -47,14 +41,14 @@ function validateReportForm()
         let type = document.getElementById("ReportType").value;
         let from = document.getElementById("FromDate").value;
         let to = document.getElementById("ToDate").value;
-        let days = daysBetween(makeDate(from), makeDate(to)) + 1;
-        showResult(true, type + " report (" + from + " to " + to + ", " + days + " days, " +
-                         getRadioValue("format") + ") is ready to generate!");
+        let days = daysBetween(from, to) + 1;
+        adminShowResult(true, type + " report (" + from + " to " + to + ", " + days + " days, " +
+                 getRadioValue("format") + ") is ready to generate.");
     }
     else
     {
-        showResult(false);
+        adminShowResult(false, "Please correct the highlighted fields.");
     }
 
-    return false;  
+    return false;
 }

@@ -1,64 +1,120 @@
-console.log("AdminLogin.js Connected");
-
-// ---------- simple math captcha ----------
-// A global variable keeps the correct answer so validateCaptcha() can check it
 let captchaAnswer = 0;
 
-// Called by <body onload="makeCaptcha()"> and by the "New question" button
 function makeCaptcha()
 {
-    let first = Math.floor(Math.random() * 9) + 1;    // random number 1 - 9
+    let first = Math.floor(Math.random() * 9) + 1;
     let second = Math.floor(Math.random() * 9) + 1;
     captchaAnswer = first + second;
 
-    document.getElementById("CaptchaQuestion").innerHTML = "What is " + first + " + " + second + " ?";
+    document.getElementById("CaptchaQuestion").textContent = "What is " + first + " + " + second + "?";
     document.getElementById("Captcha").value = "";
+    clearError(document.getElementById("Captcha"));
 }
 
-// Admin-only rule: the captcha answer must match
-function validateCaptcha()
+function validateAdminID()
 {
-    let value = document.getElementById("Captcha").value.trim();
+    let input = document.getElementById("AdminID");
+    let value = input.value.trim();
 
-    if (value === "")
+    if (!validateRequired(value))
     {
-        showError("CaptchaError", "Please answer the security question");
+        showError(input, "Please enter your Admin ID.");
         return false;
     }
-    if (Number(value) !== captchaAnswer)
+    if (!/^ADM-\d{4}$/i.test(value))
     {
-        showError("CaptchaError", "Wrong answer. A new question has been given, please try again");
-        makeCaptcha();
+        showError(input, "Enter an Admin ID in the format ADM-1234.");
         return false;
     }
-    clearError("CaptchaError");
+
+    clearError(input);
     return true;
 }
 
-// Called by <form onsubmit="return validateAdminLogin()">
+function validateAdminPassword()
+{
+    let input = document.getElementById("Password");
+    let value = input.value;
+
+    if (!validateRequired(value))
+    {
+        showError(input, "Please enter your password.");
+        return false;
+    }
+    if (!validatePassword(value))
+    {
+        showError(input, "Use at least 8 characters with an uppercase letter, a lowercase letter, and a number.");
+        return false;
+    }
+
+    clearError(input);
+    return true;
+}
+
+function validateCaptcha()
+{
+    let input = document.getElementById("Captcha");
+    let value = input.value.trim();
+
+    if (!validateRequired(value))
+    {
+        showError(input, "Please answer the security question.");
+        return false;
+    }
+    if (!/^\d+$/.test(value) || Number(value) !== captchaAnswer)
+    {
+        makeCaptcha();
+        showError(input, "Incorrect answer. A new question has been generated.");
+        return false;
+    }
+
+    clearError(input);
+    return true;
+}
+
+function showLoginResult(isValid, message)
+{
+    let result = document.getElementById("ResultText");
+    result.textContent = message;
+    result.className = isValid ? "success" : "failed";
+}
+
 function validateAdminLogin()
 {
-    let validAdminID = validatePattern("AdminID", "AdminIDError", "Admin ID", /^ADM-[0-9]{4}$/, "ADM-1234");
-    let validPassword = validatePassword("Password", "PasswordError");   // must follow the registration rules
+    let validAdminID = validateAdminID();
+    let validPassword = validateAdminPassword();
     let validCaptcha = validateCaptcha();
-
     let isValid = validAdminID && validPassword && validCaptcha;
 
     if (isValid)
     {
         let adminID = document.getElementById("AdminID").value.trim().toUpperCase();
-        let message = "Login details for " + adminID + " are valid!";
+        let message = "Login details for " + adminID + " passed validation.";
 
         if (document.getElementById("Remember").checked)
         {
-            message = message + " (Remember me is ON)";
+            message += " Remember me is on.";
         }
-        showResult(true, message);
+        showLoginResult(true, message);
     }
     else
     {
-        showResult(false);
+        showLoginResult(false, "Please correct the highlighted fields.");
     }
 
-    return false;   // validation-only project: no server yet
+    return false;
+}
+
+function clearLoginErrors()
+{
+    ["AdminID", "Password", "Captcha"].forEach(function (id) {
+        let input = document.getElementById(id);
+        input.classList.remove("input-valid", "input-invalid");
+        input.removeAttribute("aria-invalid");
+        let error = input.parentElement.querySelector(".error");
+        if (error) error.textContent = "";
+    });
+    let result = document.getElementById("ResultText");
+    result.textContent = "";
+    result.className = "";
 }

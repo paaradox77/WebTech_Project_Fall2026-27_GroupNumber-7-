@@ -1,0 +1,103 @@
+body.admin
+{
+    --theme: #1f625b;
+    background: #eef4f2;
+}
+
+body.admin .header
+{
+    max-width: 900px;
+    margin: 0 auto 12px;
+    border-bottom: 1px solid #d3e2de;
+}
+
+body.admin .header h1
+{
+    font-size: 1.9rem;
+}
+
+body.admin .topnav
+{
+    background: #174e49;
+    box-shadow: 0 3px 9px rgba(28, 69, 63, 0.12);
+}
+
+body.admin .topnav a:hover
+{
+    background: #2b7068;
+}
+
+body.admin .topnav a.active
+{
+    background: #dcece8;
+    color: #174e49;
+}
+
+body.admin fieldset
+{
+    border: 1px solid #bfd4cf;
+    border-left: 4px solid #4a9289;
+    border-radius: 5px;
+    box-shadow: 0 2px 7px rgba(28, 69, 63, 0.06);
+}
+
+body.admin legend
+{
+    color: #225f59;
+}
+
+body.admin input:focus,
+body.admin select:focus,
+body.admin textarea:focus
+{
+    outline-color: #318178;
+    border-color: #318178;
+}
+
+body.admin #submit
+{
+    background: #2c746c;
+    color: #fff;
+}
+
+body.admin #submit:hover
+{
+    background: #205e58;
+}
+
+body.admin #reset
+{
+    background: #dce9e5;
+    color: #315b56;
+}
+
+body.admin #reset:hover
+{
+    background: #cbded8;
+}
+
+body.admin .small-btn
+{
+    background: #dce9e5;
+    color: #315b56;
+}
+
+body.admin .footer
+{
+    border-top: 1px solid #d3e2de;
+    padding-top: 12px;
+}
+
+@media (max-width: 600px)
+{
+    body.admin .topnav a
+    {
+        flex: 1 1 30%;
+        text-align: center;
+    }
+
+    body.admin td:first-child
+    {
+        width: 36%;
+    }
+}
