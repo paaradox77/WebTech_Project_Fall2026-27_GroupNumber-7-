@@ -35,7 +35,6 @@ function validateLogin() {
 
     if (!isValid) return false;
 
-    // Hardcoded check for demonstration (user@gmail.com / 12345678)
     if (identifier === "user@gmail.com" && password === "12345678") {
         alert("Login Successful!");
         return true;
