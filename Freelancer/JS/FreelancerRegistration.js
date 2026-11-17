@@ -15,12 +15,10 @@ function validateRegistration() {
     document.getElementById("emailErr").innerHTML = email === "" ? "Email is required." : "";
     if (email === "") isValid = false;
 
-    // Simple BD phone verification check (starts with 01 and total 11 digits)
     let phoneRegex = /^01[3-9]\d{8}$/;
     document.getElementById("phoneErr").innerHTML = !phoneRegex.test(phone) ? "Enter valid BD phone (e.g., 01712345678)." : "";
     if (!phoneRegex.test(phone)) isValid = false;
 
-    // 18+ Age Validation logic
     let dobDate = new Date(dob);
     let today = new Date();
     let age = today.getFullYear() - dobDate.getFullYear();
